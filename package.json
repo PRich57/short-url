@@ -1,0 +1,31 @@
+{
+  "name": "short-url",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "startTest": "cd client && npm run dev",
+    "watch": "npx nodemon server/server.js",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "git": "^0.1.5",
+    "lodash": "^4.17.21",
+    "main": "^1000.0.1",
+    "node": "^21.2.0",
+    "push": "^0.1.1",
+    "tough-cookie": "^4.1.3",
+    "uuid": "^9.0.1"
+  }
+}
