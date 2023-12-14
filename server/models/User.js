@@ -17,7 +17,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minlength: 8,
+    minLength: 8,
     match: [
       /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
       "Minimum 8 characters, must include lowercase, uppercase, number, and special character",
@@ -28,14 +28,15 @@ const userSchema = new Schema({
 // Hash the password with bcrypt before saving to user model
 userSchema.pre('save', async function(next) {
   if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 8);
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
   }
   next();
 });
 
 // Compare entered password with hashed password in database
 userSchema.methods.isCorrectPassword = async function(password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
 const User = model('User', userSchema);

@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User, Url } = require('../models');
 const ShortUniqueId = require('short-unique-id');
@@ -24,13 +23,11 @@ const resolvers = {
           // If the user exists, throw new Error
           throw new Error('User already exists');
         }
-        // Hash the user's password
-        const hashedPassword = await bcrypt.hash(password, 12);
-        // Create new user with their input and the hashed password
+        // Create new user with their input
         const newUser = new User({
           username,
           email,
-          password: hashedPassword
+          password,
         });
         // Save user
         const savedUser = await newUser.save();
@@ -40,7 +37,7 @@ const resolvers = {
         // Return the schema based properties of the user and the token
         return { ...savedUser._doc, token };
       } catch (err) {
-        throw new Error("Failed to register user");
+        throw new Error(err.message);
       }
     },
     // User login
@@ -53,16 +50,17 @@ const resolvers = {
           throw new Error("User not found");
         }
         // Verify the user entered the correct password
-        const isCorrectPassword = await bcrypt.compare(password, user.password);
-        // If incorrect, throw new error
-        if (!isCorrectPassword) {
+        const validPassword = await user.isCorrectPassword(password)
+
+        // // If incorrect, throw new error
+        if (!validPassword) {
           throw new Error("Incorrect password");
         }
         // Create new token for the user with 2 hour time limit
         const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '2h' });
         return { ...user._doc, token };
       } catch (err) {
-        throw new Error("Login attempt failed");
+        throw new Error(err.message);
       }
     },
     // Shorten URL
@@ -86,7 +84,7 @@ const resolvers = {
         await url.save();
         return url;
       } catch (err) {
-        throw new Error("Unknown error occurred")
+        throw new Error(err.message)
       }
     },
   },

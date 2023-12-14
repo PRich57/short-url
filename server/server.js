@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+const { Url } = require('./models/Url')
 const path = require('path');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -28,6 +30,17 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
+
+  // Set up the redirect from shortened url to original url
+  app.get('/:shortId', async (req, res) => {
+    const { shortId } = req.params;
+    const url = await Url.findOne({ shortId: shortId });
+    if (url) {
+      return res.redirect(url.originalUrl);
+    } else {
+      return res.status(404).send('URL not found');
+    }
+  })
   
   db.once('open', () => {
     app.listen(PORT, () => {
