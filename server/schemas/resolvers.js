@@ -26,15 +26,19 @@ const resolvers = {
         }
         // Hash the user's password
         const hashedPassword = await bcrypt.hash(password, 12);
-        // Create the user with their input and the hashed password
-        const user = await User.create({
-          email,
-          password: hashedPassword,
+        // Create new user with their input and the hashed password
+        const newUser = new User({
           username,
+          email,
+          password: hashedPassword
         });
+        // Save user
+        const savedUser = await newUser.save();
+
         // Create a json web token with a 2 hour time limit
-        const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '2h' });
-        return { token, user };
+        const token = jwt.sign({ email: savedUser.email, id: savedUser._id }, JWT_SECRET, { expiresIn: '2h' });
+        // Return the schema based properties of the user and the token
+        return { ...savedUser._doc, token };
       } catch (err) {
         throw new Error("Failed to register user");
       }
@@ -42,14 +46,48 @@ const resolvers = {
     // User login
     login: async (_, { email, password }) => {
       try {
-
+        // Find user by their email
+        const user = await User.findOne({ email });
+        // If not found, throw new Error
+        if (!user) {
+          throw new Error("User not found");
+        }
+        // Verify the user entered the correct password
+        const isCorrectPassword = await bcrypt.compare(password, user.password);
+        // If incorrect, throw new error
+        if (!isCorrectPassword) {
+          throw new Error("Incorrect password");
+        }
+        // Create new token for the user with 2 hour time limit
+        const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '2h' });
+        return { ...user._doc, token };
       } catch (err) {
-        throw new Error("Failed to log in")
+        throw new Error("Login attempt failed");
       }
     },
     // Shorten URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
-
+      try {
+        if (customSlug) {
+          // Check if the customSlug is url-safe with regex
+          if (/[^A-Za-z0-9_-]/.test(customSlug)) {
+            throw new Error("Custom slug must only contain alphanumeric characters, hyphens, and/or underscores");
+          }
+          // Check if customSlug already exists
+          const existingUrl = await Url.findOne({ shortId: customSlug });
+          if (existingUrl) {
+            throw new Error('Custom URL already in use');
+          }
+        }
+        // Use custom slug if provided, otherwise randomly generate
+        const shortId = customSlug || uid.rnd();
+        // Save the new URL to the database and return it
+        const url = new Url({ originalUrl, shortId, user: userId });
+        await url.save();
+        return url;
+      } catch (err) {
+        throw new Error("Unknown error occurred")
+      }
     },
   },
 };
