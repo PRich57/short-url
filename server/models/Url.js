@@ -13,7 +13,12 @@ const urlSchema = new Schema({
   createdAt: {
     type: Date,
     default: () => new Date(),
-  }
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: 'true',
+  },
 });
 
 const Url = model('Url', urlSchema);

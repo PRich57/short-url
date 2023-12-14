@@ -23,10 +23,6 @@ const userSchema = new Schema({
       "Minimum 8 characters, must include lowercase, uppercase, number, and special character",
     ],
   },
-  urls: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Url',
-  }]
 });
 
 // Hash the password with bcrypt before saving to user model
@@ -42,6 +38,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
