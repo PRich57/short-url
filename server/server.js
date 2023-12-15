@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require('express');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+const { authMiddleware } = require("./utils/auth");
 const { Url } = require('./models/Url')
 const path = require('path');
 
@@ -21,7 +22,12 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   
-  app.use('/graphql', expressMiddleware(server));
+  app.use(
+    '/graphql', 
+    expressMiddleware(server, {
+      context: authMiddleware,
+    })
+  );
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
