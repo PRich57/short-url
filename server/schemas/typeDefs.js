@@ -10,6 +10,7 @@ const typeDefs = `
     _id: ID!
     originalUrl: String
     shortId: String
+    fullShortUrl: String
     createdAt: String
     user: ID
   }

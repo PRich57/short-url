@@ -79,10 +79,12 @@ const resolvers = {
         }
         // Use custom slug if provided, otherwise randomly generate
         const shortId = customSlug || uid.rnd();
+        // Combine shortId with base domain
+        const fullShortUrl = `http://localhost:3001/${shortId}`
         // Save the new URL to the database and return it
         const url = new Url({ originalUrl, shortId, user: userId });
         await url.save();
-        return url;
+        return { ...url._doc, fullShortUrl };
       } catch (err) {
         throw new Error(err.message)
       }
