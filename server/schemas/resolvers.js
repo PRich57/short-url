@@ -10,7 +10,13 @@ const resolvers = {
   Query: {
     // Get all shortened URLs for this user
     getUserUrls: async (_, { userId }) => {
-      return Url.find({ user: userId })
+      const urls = await Url.find({ user: userId });
+      return urls.map(url => {
+        return {
+          ...url._doc,
+          fullShortUrl: `http://localhost:3001/${url.shortId}`
+        };
+      });
     }
   },
   Mutation: {
