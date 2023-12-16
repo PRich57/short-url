@@ -10,7 +10,8 @@ const resolvers = {
   Query: {
     // Get all shortened URLs for this user
     getUserUrls: async (_, { userId }) => {
-      const urls = await Url.find({ user: userId });
+      const urls = await Url.find({ user: userId })
+      .sort({ createdAt: -1 });
       return urls.map(url => {
         return {
           ...url._doc,
