@@ -5,10 +5,11 @@ import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ErrorPage from './pages/Error';
+import Register from './pages/Register'
 import './App.css'
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -29,14 +30,14 @@ const client = new ApolloClient({
 
 function App() {
 
-
   return (
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/shorten-url" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </ApolloProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Typography, Paper } from '@mui/material';
+import { List, ListItem, ListItemText, Typography, Paper, Link } from '@mui/material';
 
 function RecentURLsList({ urls }) {
   return (
@@ -11,8 +11,8 @@ function RecentURLsList({ urls }) {
         {urls.map((url) => (
           <ListItem key={url._id}>
             <ListItemText
-              primary={url.fullShortUrl}
-              secondary={url.originalUrl}
+              primary={<Link href={url.fullShortUrl} target="_blank">{url.fullShortUrl}</Link>}
+              secondary={<Link href={url.originalUrl} target="_blank">{url.originalUrl}</Link>}
             />
           </ListItem>
         ))}

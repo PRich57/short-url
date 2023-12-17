@@ -4,12 +4,12 @@ import { GET_USER_URLS } from "../utils/queries";
 import { useUser } from "../components/UserContext";
 import ShorteningForm from "../components/ShorteningForm";
 import RecentURLsList from "../components/RecentURLsList";
+import { Snackbar, Alert } from "@mui/material";
 
 function Home() {
   const { user } = useUser();
-  const userId = user ? user._id : null;
   const { data: urlsData, refetch } = useQuery(GET_USER_URLS, {
-    variables: { userId: localStorage.getItem("userId") },
+    variables: { userId: user?._id },
     fetchPolicy: "network-only",
   });
 
