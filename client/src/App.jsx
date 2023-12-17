@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from "@apollo/client/link/context";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import ErrorPage from './pages/Error';
 import './App.css'
 
 const httpLink = createHttpLink({
@@ -32,11 +36,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Error />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </ApolloProvider>
   )
 }
 
-export default App
+export default App;
