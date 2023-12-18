@@ -43,9 +43,10 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="form">
       <RegisterForm onRegister={handleRegister} />
       <Snackbar 
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={openSnackbar} 
         autoHideDuration={4000} 
         onClose={handleSnackbarClose}

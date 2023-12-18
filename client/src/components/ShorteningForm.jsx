@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button, Paper } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import { SHORTEN_URL } from "../utils/mutations";
 import { useUser } from "./UserContext";
@@ -60,43 +60,45 @@ function ShorteningForm({ onShorten }) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="URL to shorten"
-          variant="outlined"
-          fullWidth
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
-        />
-        <TextField
-          label="Custom url path (optional)"
-          variant="outlined"
-          fullWidth
-          value={customSlug}
-          onChange={(e) => setCustomSlug(e.target.value)}
-          style={{ marginBottom: "10px", backgroundColor: "#dedede", borderRadius: "6px" }}
-        />
-        <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px" }}>
-          Shorten URL
-        </Button>
-        <Snackbar 
-        open={openSnackbar} 
-        autoHideDuration={4000} 
-        onClose={handleSnackbarClose}
-      >
-        <Alert 
-          elevation={6} 
-          variant="filled" 
-          onClose={handleSnackbarClose} 
-          severity={snackbarSeverity}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
-      </form>
-    </div>
+      <div className="form">
+        <h1>Shorten URL</h1>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            label="URL to shorten"
+            variant="outlined"
+            fullWidth
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+          />
+          <TextField
+            label="Custom url path (optional)"
+            variant="outlined"
+            fullWidth
+            value={customSlug}
+            onChange={(e) => setCustomSlug(e.target.value)}
+            style={{ marginBottom: "20px", backgroundColor: "#dedede", borderRadius: "6px" }}
+          />
+          <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px" }}>
+            Shorten URL
+          </Button>
+          <Snackbar 
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            open={openSnackbar} 
+            autoHideDuration={4000} 
+            onClose={handleSnackbarClose}
+          >
+            <Alert 
+              elevation={6} 
+              variant="filled" 
+              onClose={handleSnackbarClose} 
+              severity={snackbarSeverity}
+            >
+              {snackbarMessage}
+            </Alert>
+          </Snackbar>
+        </form>
+      </div>
   );
 }
 

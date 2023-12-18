@@ -8,12 +8,12 @@ function LoginForm({ onLogin }) {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     onLogin(email, password);
   };
 
   return (
-    <Paper style={{ padding: '20px' }}>
+    <Paper style={{ padding: '20px', backgroundColor: '#dedede', }}>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Email"
@@ -22,6 +22,7 @@ function LoginForm({ onLogin }) {
           fullWidth
           margin='normal'
           InputLabelProps={{ shrink: true }}
+          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <TextField
           label="Password"
@@ -31,6 +32,7 @@ function LoginForm({ onLogin }) {
           fullWidth
           margin='normal'
           InputLabelProps={{ shrink: true }}
+          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <Button type='submit' variant='contained' color='primary'>
           Login

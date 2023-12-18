@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:ital,wght@1,500&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -19,6 +21,20 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #379683;
+}
+
+h1 {
+  color: #8EE4AF;
+}
+
+.MuiPaper-root {
+  background-color: #05386B !important;
+}
+
+.recent-urls {
+  background-color: #05386B !important;
+  box-shadow: none !important;
 }
 
 .MuiToolbar-root {
@@ -31,7 +47,7 @@ body {
 }
 
 /* Hide the desktop menu on smaller screens */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 899px) {
   .desktopMenu {
     display: none;
   }

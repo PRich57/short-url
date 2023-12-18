@@ -10,7 +10,7 @@ import {
 
 function RecentURLsList({ urls }) {
   return (
-    <Paper style={{ padding: "20px", backgroundColor: "#444444" }}>
+    <Paper style={{ padding: "20px", backgroundColor: "#444444" }} className="recent-urls">
       <Typography variant="h5" style={{ marginBottom: "10px", color: "white" }}>
         Your recent URLs
       </Typography>
@@ -24,7 +24,7 @@ function RecentURLsList({ urls }) {
                   <Link
                     href={url.fullShortUrl}
                     target="_blank"
-                    style={{ color: "#76C4AE", fontSize: "18px" }}
+                    style={{ color: "#8EE4AF", fontSize: "18px" }}
                   >
                     {url.fullShortUrl}
                   </Link>
@@ -50,7 +50,7 @@ function RecentURLsList({ urls }) {
         Visit your{" "}
         <Link
           href="/profile"
-          style={{ textDecoration: "none", color: "#76C4AE" }}
+          style={{ textDecoration: "none", color: "#8EE4AF" }}
         >
           Profile
         </Link>{" "}

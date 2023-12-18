@@ -155,11 +155,11 @@ function Header() {
   );
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="header">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h5"
+            variant="h3"
             component="div"
             style={{ textAlign: "start" }}
             sx={{
@@ -167,8 +167,10 @@ function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#8EE4AF',
               textDecoration: 'none',
+              flexGrow: 1,
+              fontSize: 'calc(12px + 1.5vw)'
             }}
           >
             SHORT URL
@@ -196,7 +198,7 @@ function Header() {
                 >
                   Profile
                 </Button>
-                <Button  color="inherit" onClick={handleLogout}>
+                <Button  color="inherit" onClick={handleLogout} className="btn">
                   Logout
                 </Button>
               </>
@@ -234,11 +236,8 @@ function Header() {
             sx={{
               mr: 2,
               display: { xl: 'none', md: 'none', },
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: 'inherit',
-              textDecoration: 'none',
             }}
           >
             <MenuIcon />

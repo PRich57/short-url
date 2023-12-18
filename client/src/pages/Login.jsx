@@ -15,7 +15,6 @@ function Login() {
       localStorage.setItem("token", data.login.token);
       // Store user info in context
       setUser(data.login);
-      console.log(data);
     },
   });
 
@@ -48,9 +47,10 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="form">
       <LoginForm onLogin={handleLogin} />
       <Snackbar 
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={openSnackbar} 
         autoHideDuration={4000} 
         onClose={handleSnackbarClose}
