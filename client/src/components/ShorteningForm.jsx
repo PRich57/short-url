@@ -68,7 +68,7 @@ function ShorteningForm({ onShorten }) {
           fullWidth
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          style={{ margin: "20px 0", backgroundColor: "white" }}
+          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <TextField
           label="Custom url path (optional)"
@@ -76,7 +76,7 @@ function ShorteningForm({ onShorten }) {
           fullWidth
           value={customSlug}
           onChange={(e) => setCustomSlug(e.target.value)}
-          style={{ marginBottom: "10px", backgroundColor: "white" }}
+          style={{ marginBottom: "10px", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px" }}>
           Shorten URL

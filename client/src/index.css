@@ -12,6 +12,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* Hide the mobile menu icon on larger screens */
+.mobileMenuButton {
+  display: none;
+}
+
+/* Show the mobile menu icon on smaller screens */
+@media screen and (max-width: 600px) {
+  .mobileMenuButton {
+    display: block;
+  }
+}
+
+/* Show the desktop menu on larger screens */
+.desktopMenu {
+  display: flex;
+}
+
+/* Hide the desktop menu on smaller screens */
+@media screen and (max-width: 600px) {
+  .desktopMenu {
+    display: none;
+  }
+}
 
 a {
   font-weight: 500;

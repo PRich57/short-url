@@ -2,8 +2,9 @@ const jwt = require('jsonwebtoken');
 const { User, Url } = require('../models');
 const ShortUniqueId = require('short-unique-id');
 
-// Instantiate as per npm docs
-const uid = new ShortUniqueId({ length: 10 });
+
+
+
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
@@ -72,24 +73,48 @@ const resolvers = {
     },
     // Shorten URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
+      // Create a random number function for values 1-10
+      function getRandomNumber() {
+        return Math.floor(Math.random() * 8) + 1;
+      }
+
+      // Instantiate as per npm docs with random length 1-10
+      const uid = new ShortUniqueId({ length: getRandomNumber() });
+
       try {
         if (!originalUrl) {
           throw new Error("Original URL is required!");
         }
 
+        let shortId;
+
+        // If user provides custom slug
         if (customSlug) {
           // Check if the customSlug is url-safe with regex
           if (/[^A-Za-z0-9_-]/.test(customSlug)) {
-            throw new Error("Custom slug must only contain alphanumeric characters, hyphens, and/or underscores");
+            throw new Error("Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
           }
           // Check if customSlug already exists
           const existingUrl = await Url.findOne({ shortId: customSlug });
           if (existingUrl) {
             throw new Error('Custom URL already in use');
+          } 
+          // Assign value of customSlug to shortId
+          shortId = customSlug;
+        } else {
+          // If no customSlug is provided, generate random shortId
+          let isUnique = false;
+          // Need to also make sure random id doesn't exist and regenerate if it does
+          while (!isUnique) {
+            shortId = uid.rnd();
+            const existingUrl = await Url.findOne({ shortId });
+            if (!existingUrl) {
+              // Exit loop when I know it doesn't exist in database
+              isUnique = true;
+            }
           }
         }
-        // Use custom slug if provided, otherwise randomly generate
-        const shortId = customSlug || uid.rnd();
+
         // Combine shortId with base domain
         const fullShortUrl = `http://localhost:3001/${shortId}`
         // Save the new URL to the database and return it

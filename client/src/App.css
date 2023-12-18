@@ -18,6 +18,29 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.mobileMenuButton {
+  display: none;
+}
+
+/* Show the mobile menu button on smaller screens */
+@media screen and (max-width: 600px) {
+  .mobileMenuButton {
+    display: block;
+  }
+}
+
+/* Show the desktop menu on larger screens */
+.desktopMenu {
+  display: flex;
+}
+
+/* Hide the desktop menu on smaller screens */
+@media screen and (max-width: 600px) {
+  .desktopMenu {
+    display: none;
+  }
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
