@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Paper } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import { SHORTEN_URL } from "../utils/mutations";
 import { useUser } from "./UserContext";

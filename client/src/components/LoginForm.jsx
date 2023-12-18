@@ -35,7 +35,7 @@ function LoginForm({ onLogin }) {
           style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <Button type='submit' variant='contained' color='primary'>
-          Login
+          LOGIN
         </Button>
       </form>
     </Paper>

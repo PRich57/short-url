@@ -78,6 +78,9 @@ function Header() {
           handleTabClick("home");
         }}
         className={getButtonClass("home")}
+        sx={{
+          color: "white"
+        }}
       >
         Home
       </MenuItem>
@@ -93,12 +96,22 @@ function Header() {
             handleTabClick("profile");
           }}
           className={getButtonClass("profile")}
+          sx={{
+            color: "white"
+          }}
         >
           Profile
         </MenuItem>
       );
       items.push(
-        <MenuItem key="logout" onClick={handleLogout}>
+        <MenuItem 
+          key="logout" 
+          onClick={handleLogout} 
+          className="btn" 
+          sx={{
+            color: "white"
+          }}
+        >
           Logout
         </MenuItem>
       );
@@ -112,6 +125,9 @@ function Header() {
             handleTabClick("login");
           }}
           className={getButtonClass("login")}
+          sx={{
+            color: "white"
+          }}
         >
           Login
         </MenuItem>
@@ -125,6 +141,9 @@ function Header() {
             handleTabClick("register");
           }}
           className={getButtonClass("register")}
+          sx={{
+            color: "white"
+          }}
         >
           Sign Up
         </MenuItem>
@@ -164,9 +183,7 @@ function Header() {
             style={{ textAlign: "start" }}
             sx={{
               mr: 2,
-              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: '#8EE4AF',
               textDecoration: 'none',
               flexGrow: 1,

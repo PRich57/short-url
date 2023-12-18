@@ -19,12 +19,12 @@ function RecentURLsList({ urls }) {
           <ListItem key={url._id}>
             <ListItemText
               primary={
-                <Typography style={{ marginBottom: "10px", color: "white" }}>
+                <Typography style={{ marginBottom: "10px", color: "white", wordBreak: "break-all" }}>
                   Short URL :{" "}
                   <Link
                     href={url.fullShortUrl}
                     target="_blank"
-                    style={{ color: "#8EE4AF", fontSize: "18px" }}
+                    style={{ color: "#8EE4AF", fontSize: "calc(13px + .2vw)" }}
                   >
                     {url.fullShortUrl}
                   </Link>
@@ -36,7 +36,7 @@ function RecentURLsList({ urls }) {
                   <Link
                     href={url.originalUrl}
                     target="_blank"
-                    style={{ color: "#D86C70", fontSize: "11px" }}
+                    style={{ color: "#D86C70", fontSize: "calc(9px + .1vw)" }}
                   >
                     {url.originalUrl}
                   </Link>

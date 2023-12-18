@@ -28,6 +28,10 @@ h1 {
   color: #8EE4AF;
 }
 
+h5, h6, h3, p, button, label {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .MuiPaper-root {
   background-color: #05386B !important;
 }
