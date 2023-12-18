@@ -22,7 +22,7 @@ function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             URL Shortener
           </Typography>
-          <Button color="inherit" onClick={() => navigate('/')}>Home</Button>
+          <Button color="inherit" onClick={() => navigate('/shorten-url')}>Home</Button>
           {user ? (
             <>
               <Button color="inherit" onClick={() => navigate('/profile')}>Profile</Button>

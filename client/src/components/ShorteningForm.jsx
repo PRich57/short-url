@@ -3,20 +3,39 @@ import { TextField, Button, Typography } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import { SHORTEN_URL } from "../utils/mutations";
 import { useUser } from "./UserContext";
+import { Snackbar, Alert } from "@mui/material";
 
 function ShorteningForm({ onShorten }) {
   const [url, setUrl] = useState("");
   const [customSlug, setCustomSlug] = useState('');
   const { user } = useUser();
 
+    // Use state for MUI Snackbar alerts
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  
+    // Async function to handle Snackbar
+    const handleSnackbarClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setOpenSnackbar(false);
+    }
+
   const [shortenUrl, { data, error }] = useMutation(SHORTEN_URL, {
     onCompleted: () => {
       setUrl("");
       setCustomSlug("");
       onShorten();
+      setSnackbarMessage('URL successfully shortened');
+      setSnackbarSeverity('success');
+      setOpenSnackbar(true);
     },
     onError: (err) => {
-      console.error("Error during URL shortening:", err.message);
+      setSnackbarMessage('Failed to shorten URL! Please try again.');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
     },
   });
 
@@ -46,7 +65,7 @@ function ShorteningForm({ onShorten }) {
           fullWidth
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          style={{ marginBottom: "20px" }}
+          style={{ margin: "20px 0", backgroundColor: "white" }}
         />
         <TextField
           label="Custom url path (optional)"
@@ -54,18 +73,26 @@ function ShorteningForm({ onShorten }) {
           fullWidth
           value={customSlug}
           onChange={(e) => setCustomSlug(e.target.value)}
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "10px", backgroundColor: "white" }}
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px" }}>
           Shorten URL
         </Button>
+        <Snackbar 
+        open={openSnackbar} 
+        autoHideDuration={4000} 
+        onClose={handleSnackbarClose}
+      >
+        <Alert 
+          elevation={6} 
+          variant="filled" 
+          onClose={handleSnackbarClose} 
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
       </form>
-      {data && (
-        <Typography>Shortened URL: {data.shortenUrl.fullShortUrl}</Typography>
-      )}
-      {error && (
-        <Typography color="error">Error: {error.message}</Typography>
-      )}
     </div>
   );
 }
