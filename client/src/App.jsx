@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ErrorPage from './pages/Error';
 import Register from './pages/Register'
+import Header from './components/Header';
 import './App.css'
 
 const httpLink = createHttpLink({
@@ -33,6 +34,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/shorten-url" element={<Home />} />
