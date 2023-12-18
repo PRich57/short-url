@@ -33,7 +33,8 @@ function ShorteningForm({ onShorten }) {
       setOpenSnackbar(true);
     },
     onError: (err) => {
-      setSnackbarMessage('Failed to shorten URL! Please try again.');
+      setSnackbarMessage(err.message);
+      console.log(err.message);
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     },
@@ -52,7 +53,9 @@ function ShorteningForm({ onShorten }) {
         console.error("Error caught during mutation:", err);
       }
     } else {
-      console.error("No user data found");
+      setSnackbarMessage('You must be logged in to use this application.');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
     }
   };
 

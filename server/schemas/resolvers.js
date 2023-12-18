@@ -73,6 +73,10 @@ const resolvers = {
     // Shorten URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
       try {
+        if (!originalUrl) {
+          throw new Error("Original URL is required!");
+        }
+
         if (customSlug) {
           // Check if the customSlug is url-safe with regex
           if (/[^A-Za-z0-9_-]/.test(customSlug)) {
