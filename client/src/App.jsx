@@ -37,7 +37,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/shorten-url" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
           <Route path="/register" element={<Register />} />
         </Routes>

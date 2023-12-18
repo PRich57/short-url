@@ -39,7 +39,7 @@ function Login() {
       setSnackbarMessage('Login successful!');
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
-      navigate('/shorten-url');
+      navigate('/home');
     } catch (err) {
       setSnackbarMessage('Login failed:' + err.message);
       setSnackbarSeverity('error');

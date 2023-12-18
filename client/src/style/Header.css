@@ -1,0 +1,10 @@
+.active-btn {
+  color: #11f4f4 !important;
+  text-decoration: underline !important;
+  border: none !important;
+}
+
+.btn {
+  border: none !important;
+  margin: 0 2px !important;
+}

@@ -21,14 +21,16 @@ function LoginForm({ onLogin }) {
           onChange={(e) => setEmail(e.target.value)}
           fullWidth
           margin='normal'
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           label="Password"
           type="password"
-          value={password}
+          value={password || ''}
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
           margin='normal'
+          InputLabelProps={{ shrink: true }}
         />
         <Button type='submit' variant='contained' color='primary'>
           Login
