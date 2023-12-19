@@ -20,20 +20,19 @@ function Profile() {
     fetchPolicy: "network-only",
   });
 
-  console.log(user);
-
   useEffect(() => {
     refetch();
   }, []);
 
   return (
-    <div className="center">
+    <div>
       <Paper
         style={{
           padding: "20px",
           backgroundColor: "#dedede",
           margin: "3rem 0",
         }}
+        className="paper"
       >
         <h1 style={{ textTransform: 'uppercase' }}>{user.username}</h1>
         <ShorteningForm onShorten={refetch} />

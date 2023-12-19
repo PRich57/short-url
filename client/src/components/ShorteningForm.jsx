@@ -34,7 +34,7 @@ function ShorteningForm({ onShorten }) {
     },
     onError: (err) => {
       setSnackbarMessage(err.message);
-      console.log(err.message);
+      console.error(err.message);
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     },
@@ -43,7 +43,7 @@ function ShorteningForm({ onShorten }) {
   // Create function to handle submit event
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting URL:", url, "Custom Slug:", customSlug, "User ID:", user?._id);
+
     if (user) {
       try {
         await shortenUrl({
@@ -86,6 +86,7 @@ function ShorteningForm({ onShorten }) {
             open={openSnackbar} 
             autoHideDuration={4000} 
             onClose={handleSnackbarClose}
+            className="snackbar"
           >
             <Alert 
               elevation={6} 

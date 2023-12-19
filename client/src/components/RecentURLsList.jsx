@@ -10,13 +10,22 @@ import {
 
 function RecentURLsList({ urls }) {
   return (
-    <Paper style={{ padding: "20px", backgroundColor: "#444444" }} className="recent-urls">
+    <Paper
+      style={{ padding: "20px", backgroundColor: "#444444" }}
+      className="paper recent-urls"
+    >
       <List>
         {urls.map((url) => (
           <ListItem key={url._id}>
             <ListItemText
               primary={
-                <Typography style={{ marginBottom: "10px", color: "white", wordBreak: "break-all" }}>
+                <Typography
+                  style={{
+                    marginBottom: "10px",
+                    color: "white",
+                    wordBreak: "break-word",
+                  }}
+                >
                   Short URL :{" "}
                   <Link
                     href={url.fullShortUrl}
@@ -28,7 +37,13 @@ function RecentURLsList({ urls }) {
                 </Typography>
               }
               secondary={
-                <Typography style={{ marginBottom: "10px", color: "white", wordBreak: "break-all" }}>
+                <Typography
+                  style={{
+                    marginBottom: "10px",
+                    color: "white",
+                    wordBreak: "break-all",
+                  }}
+                >
                   Original URL :{" "}
                   <Link
                     href={url.originalUrl}

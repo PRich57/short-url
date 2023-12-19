@@ -23,8 +23,9 @@ function Home() {
         style={{
           padding: "20px",
           backgroundColor: "#dedede",
-          margin: "4rem 0",
+          margin: "3rem 0",
         }}
+        className="paper"
       >
         <h1>Shorten URL</h1>
         <ShorteningForm onShorten={refetch} />
@@ -49,7 +50,7 @@ function Home() {
                 >
                 Profile
               </Link>{" "}
-              to see a complete list of your shortened URLs.
+              to see a complete list of your shortened URLs!
             </Typography>
           </>
         }

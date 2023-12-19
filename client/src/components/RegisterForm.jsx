@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { TextField, Button, Paper } from '@mui/material';
+import React, { useState } from "react";
+import { TextField, Button, Paper } from "@mui/material";
 
 function RegisterForm({ onRegister }) {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Handle submit event
   const handleSubmit = (e) => {
@@ -13,41 +13,53 @@ function RegisterForm({ onRegister }) {
   };
 
   return (
-    <Paper style={{ padding: '20px', backgroundColor: '#dedede' }}>
+    <Paper 
+      style={{ padding: "20px", backgroundColor: "#dedede" }}
+      className="paper"
+    >
       <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Username"
-          color='primary'
+          color="primary"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           fullWidth
-          margin='normal'
-          // InputLabelProps={{ shrink: true }}
-          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+          margin="normal"
+          style={{
+            margin: "20px 0",
+            backgroundColor: "#dedede",
+            borderRadius: "6px",
+          }}
         />
         <TextField
           label="Email"
-          color='primary'
+          color="primary"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           fullWidth
-          margin='normal'
-          // InputLabelProps={{ shrink: true }}
-          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+          margin="normal"
+          style={{
+            margin: "20px 0",
+            backgroundColor: "#dedede",
+            borderRadius: "6px",
+          }}
         />
         <TextField
           label="Password"
           type="password"
-          color='primary'
+          color="primary"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
-          margin='normal'
-          // InputLabelProps={{ shrink: true }}
-          style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+          margin="normal"
+          style={{
+            margin: "20px 0",
+            backgroundColor: "#dedede",
+            borderRadius: "6px",
+          }}
         />
-        <Button type='submit' variant='contained' color='primary'>
+        <Button type="submit" variant="contained" color="primary">
           SIGN UP
         </Button>
       </form>

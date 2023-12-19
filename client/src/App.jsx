@@ -8,7 +8,7 @@ import ErrorPage from './pages/Error';
 import Register from './pages/Register'
 import Header from './components/Header';
 import Profile from './pages/Profile';
-import './App.css'
+import './App.css';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',

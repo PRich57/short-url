@@ -39,20 +39,23 @@ h5, h6, h3, p, button, label {
   font-family: 'Montserrat', sans-serif !important;
 }
 
-.center {
-  width: 60vw;
-  margin: 0 auto;
+h5 {
+  margin-bottom: 0;
 }
 
-.MuiPaper-root {
+.paper {
+  max-width: 1480px !important;
   background-color: #05386B !important;
-  min-width: 35vw;
-  /* margin: 3 auto !important; */
-  /* border-radius: 9px; */
+  min-width: 35vw !important;
+  border-radius: 9px !important;
+  margin: 3 auto !important;
+}
+
+ul {
+  background-color: #05386B !important;
 }
 
 .recent-urls {
-  background-color: #05386B !important;
   box-shadow: none !important;
 }
 
