@@ -66,6 +66,7 @@ function Header() {
     navigate("/");
   };
 
+
   const getMenuItems = () => {
     const items = [];
 
@@ -82,7 +83,7 @@ function Header() {
           color: "white"
         }}
       >
-        Home
+        HOME
       </MenuItem>
     );
 
@@ -100,7 +101,7 @@ function Header() {
             color: "white"
           }}
         >
-          Profile
+          PROFILE
         </MenuItem>
       );
       items.push(
@@ -112,7 +113,7 @@ function Header() {
             color: "white"
           }}
         >
-          Logout
+          SIGN OUT
         </MenuItem>
       );
     } else {
@@ -129,7 +130,7 @@ function Header() {
             color: "white"
           }}
         >
-          Login
+          SIGN IN
         </MenuItem>
       );
       items.push(
@@ -145,7 +146,7 @@ function Header() {
             color: "white"
           }}
         >
-          Sign Up
+          SIGN UP
         </MenuItem>
       );
     }
@@ -201,7 +202,7 @@ function Header() {
               }}
               className={getButtonClass("home")}
             >
-              Home
+              HOME
             </Button>
             {user ? (
               <>
@@ -213,10 +214,10 @@ function Header() {
                   }}
                   className={getButtonClass("profile")}
                 >
-                  Profile
+                  PROFILE
                 </Button>
                 <Button  color="inherit" onClick={handleLogout} className="btn">
-                  Logout
+                  SIGN OUT
                 </Button>
               </>
             ) : (
@@ -229,7 +230,7 @@ function Header() {
                   }}
                   className={getButtonClass("login")}
                 >
-                  Login
+                  SIGN IN
                 </Button>
                 <Button 
                   color="inherit" 
@@ -239,7 +240,7 @@ function Header() {
                   }}
                   className={getButtonClass("register")}
                 >
-                  Sign Up
+                  SIGN UP
                 </Button>
               </>
             )}

@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import ErrorPage from './pages/Error';
 import Register from './pages/Register'
 import Header from './components/Header';
+import Profile from './pages/Profile';
 import './App.css'
 
 const httpLink = createHttpLink({
@@ -37,9 +38,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="*" element={<ErrorPage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </ApolloProvider>

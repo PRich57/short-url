@@ -34,7 +34,7 @@ function Register() {
       setSnackbarMessage('Registration successful. You can now log in');
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
-      navigate('/login');
+      navigate('/');
     } catch (err) {
       setSnackbarMessage('Registration failed:' + err.message);
       setSnackbarSeverity('error');

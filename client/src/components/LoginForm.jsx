@@ -13,7 +13,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <Paper style={{ padding: '20px', backgroundColor: '#dedede', }}>
-      <h1>Login</h1>
+      <h1>SIGN IN</h1>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Email"
@@ -35,7 +35,7 @@ function LoginForm({ onLogin }) {
           style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
         <Button type='submit' variant='contained' color='primary'>
-          LOGIN
+          GO
         </Button>
       </form>
     </Paper>

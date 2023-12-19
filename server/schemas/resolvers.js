@@ -2,9 +2,7 @@ const jwt = require('jsonwebtoken');
 const { User, Url } = require('../models');
 const ShortUniqueId = require('short-unique-id');
 
-
-
-
+// Pull in the jwt secret
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {

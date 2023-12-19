@@ -61,7 +61,6 @@ function ShorteningForm({ onShorten }) {
 
   return (
       <div className="form">
-        <h1>Shorten URL</h1>
         <form onSubmit={handleSubmit}>
           <TextField
             label="URL to shorten"
@@ -79,7 +78,7 @@ function ShorteningForm({ onShorten }) {
             onChange={(e) => setCustomSlug(e.target.value)}
             style={{ marginBottom: "20px", backgroundColor: "#dedede", borderRadius: "6px" }}
           />
-          <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px" }}>
+          <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px", letterSpacing: '.2rem' }}>
             Shorten URL
           </Button>
           <Snackbar 
