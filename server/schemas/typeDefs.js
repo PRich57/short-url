@@ -14,6 +14,11 @@ const typeDefs = `
     createdAt: String
     user: ID
   }
+  
+  type DeleteResponse {
+    success: Boolean!
+    message: String!
+  }
 
   type Query {
     getUserUrls(userId: ID!): [Url]
@@ -23,6 +28,8 @@ const typeDefs = `
     register(username: String!, email: String!, password: String!): User
     login(email: String!, password: String!): User
     shortenUrl(originalUrl: String!, userId: ID!, customSlug: String): Url
+    deleteUrl(urlId: ID!): DeleteResponse
+    deleteUser(userId: ID!): DeleteResponse
   }
 `;
 

@@ -15,12 +15,12 @@ module.exports = {
   authMiddleware: function ({ req }) {
     let token = req.headers.authorization;
 
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
-    }
-
     if (!token) {
       return req;
+    }
+
+    if (token) {
+      token = token.split(' ').pop().trim();
     }
 
     try {
@@ -32,6 +32,7 @@ module.exports = {
         res.status(401).send({ message: 'Token expired. Please login again.' });
       } else {
         console.log('Invalid token');
+        return req;
       }
     }
 

@@ -123,6 +123,52 @@ const resolvers = {
         throw new Error(err.message)
       }
     },
+    // Delete url
+    deleteUrl: async (_, { urlId }, context) => {
+      try {
+        // Get user from context
+        const loggedInUserId = context.userId;
+
+        // Find URL by its ID
+        const url = await Url.findById(urlId);
+        if (!url) {
+          throw new Error('URL not found');
+        }
+
+        // Check that this URL belongs to the logged in user
+        if (url.user.toString() !== loggedInUserId) {
+          throw new Error('Not authorized to delete this URL');
+        }
+
+        // Delete the URL
+        await Url.findByIdAndDelete(urlId);
+        return { success: true, message: 'URL deleted successfully' };
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
+    // Delete account
+    deleteUser: async (_, { userId }, context) => {
+      try {
+        // Get the user info from context
+        const loggedInUserId = context.userId;
+
+        // Make sure the request matches the logged-in user's ID
+        if (userId !== loggedInUserId) {
+          throw new Error('Not authorized to delete this user');
+        }
+
+        // Delete all URLs associated with this user
+        await Url.deleteMany({ user: userId });
+
+        // Delete user
+        await User.findByIdAndDelete(userId);
+
+        return { success: true, message: 'User and all associated URLs deleted' };
+      } catch (err) {
+        throw new Error(err.message);
+      }
+    },
   },
 };
 
