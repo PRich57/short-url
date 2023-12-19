@@ -76,7 +76,7 @@ function ShorteningForm({ onShorten }) {
             fullWidth
             value={customSlug}
             onChange={(e) => setCustomSlug(e.target.value)}
-            style={{ marginBottom: "20px", backgroundColor: "#dedede", borderRadius: "6px" }}
+            style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
           />
           <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px", letterSpacing: '.2rem' }}>
             Shorten URL

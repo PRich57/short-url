@@ -27,12 +27,12 @@ function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className="center">
       <Paper
         style={{
           padding: "20px",
           backgroundColor: "#dedede",
-          margin: "2rem 0",
+          margin: "3rem 0",
         }}
       >
         <h1 style={{ textTransform: 'uppercase' }}>{user.username}</h1>
@@ -45,9 +45,9 @@ function Profile() {
             letterSpacing: ".2rem",
           }}
         >
-          My URLs:
+          My Complete List of URLs:
         </Typography>
-        {urlsData && <RecentURLsList urls={urlsData.getUserUrls.slice(0, 3)} />}
+        {urlsData && <RecentURLsList urls={urlsData.getUserUrls} />}
       </Paper>
     </div>
   );

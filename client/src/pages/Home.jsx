@@ -23,7 +23,7 @@ function Home() {
         style={{
           padding: "20px",
           backgroundColor: "#dedede",
-          margin: "2rem 0",
+          margin: "4rem 0",
         }}
       >
         <h1>Shorten URL</h1>

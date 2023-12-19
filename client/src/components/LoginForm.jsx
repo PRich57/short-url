@@ -34,7 +34,7 @@ function LoginForm({ onLogin }) {
           InputLabelProps={{ shrink: true }}
           style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
         />
-        <Button type='submit' variant='contained' color='primary'>
+        <Button type='submit' variant='contained' color='primary' style={{ marginBottom: "20px", letterSpacing: '.2rem' }}>
           GO
         </Button>
       </form>
