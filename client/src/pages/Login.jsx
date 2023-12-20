@@ -5,6 +5,8 @@ import { LOGIN } from "../utils/mutations";
 import LoginForm from "../components/LoginForm";
 import { useUser } from "../components/UserContext";
 import { Snackbar, Alert } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function Login() {
   const navigate = useNavigate();
@@ -49,21 +51,23 @@ function Login() {
   return (
     <div className="form">
       <LoginForm onLogin={handleLogin} />
-      <Snackbar 
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        open={openSnackbar} 
-        autoHideDuration={4000} 
-        onClose={handleSnackbarClose}
-      >
-        <Alert 
-          elevation={6} 
-          variant="filled" 
-          onClose={handleSnackbarClose} 
-          severity={snackbarSeverity}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+      <ThemeProvider theme={theme}>
+        <Snackbar 
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={openSnackbar} 
+          autoHideDuration={4000} 
+          onClose={handleSnackbarClose}
+          >
+          <Alert 
+            elevation={6} 
+            variant="filled" 
+            onClose={handleSnackbarClose} 
+            severity={snackbarSeverity}
+            >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+      </ThemeProvider>
     </div>
   );
 }

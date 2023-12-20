@@ -4,6 +4,8 @@ import { useMutation } from "@apollo/client";
 import { SHORTEN_URL } from "../utils/mutations";
 import { useUser } from "./UserContext";
 import { Snackbar, Alert } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function ShorteningForm({ onShorten }) {
   const [url, setUrl] = useState("");
@@ -23,7 +25,7 @@ function ShorteningForm({ onShorten }) {
       setOpenSnackbar(false);
     }
 
-  const [shortenUrl, { data, error }] = useMutation(SHORTEN_URL, {
+  const [shortenUrl] = useMutation(SHORTEN_URL, {
     onCompleted: () => {
       setUrl("");
       setCustomSlug("");
@@ -81,22 +83,24 @@ function ShorteningForm({ onShorten }) {
           <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px", letterSpacing: '.2rem' }}>
             Shorten URL
           </Button>
-          <Snackbar 
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            open={openSnackbar} 
-            autoHideDuration={4000} 
-            onClose={handleSnackbarClose}
-            className="snackbar"
-          >
-            <Alert 
-              elevation={6} 
-              variant="filled" 
-              onClose={handleSnackbarClose} 
-              severity={snackbarSeverity}
-            >
-              {snackbarMessage}
-            </Alert>
-          </Snackbar>
+          <ThemeProvider theme={theme}>
+            <Snackbar 
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              open={openSnackbar} 
+              autoHideDuration={4000} 
+              onClose={handleSnackbarClose}
+              className="snackbar"
+              >
+              <Alert 
+                elevation={6} 
+                variant="filled" 
+                onClose={handleSnackbarClose} 
+                severity={snackbarSeverity}
+                >
+                {snackbarMessage}
+              </Alert>
+            </Snackbar>
+          </ThemeProvider>
         </form>
       </div>
   );

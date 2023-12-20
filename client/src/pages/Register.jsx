@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { REGISTER } from "../utils/mutations";
 import RegisterForm from "../components/RegisterForm";
 import { Snackbar, Alert } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function Register() {
   const navigate = useNavigate();
@@ -45,21 +47,23 @@ function Register() {
   return (
     <div className="form">
       <RegisterForm onRegister={handleRegister} />
-      <Snackbar 
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        open={openSnackbar} 
-        autoHideDuration={4000} 
-        onClose={handleSnackbarClose}
-      >
-        <Alert 
-          elevation={6} 
-          variant="filled" 
-          onClose={handleSnackbarClose} 
-          severity={snackbarSeverity}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+      <ThemeProvider theme={theme}>
+        <Snackbar 
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={openSnackbar} 
+          autoHideDuration={4000} 
+          onClose={handleSnackbarClose}
+          >
+          <Alert 
+            elevation={6} 
+            variant="filled" 
+            onClose={handleSnackbarClose} 
+            severity={snackbarSeverity}
+            >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+      </ThemeProvider>
     </div>
   );
 }

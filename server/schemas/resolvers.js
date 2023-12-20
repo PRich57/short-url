@@ -43,7 +43,7 @@ const resolvers = {
         // Return the schema based properties of the user and the token
         return { ...savedUser._doc, token };
       } catch (err) {
-        throw new Error(err.message);
+        throw new Error(" All fields required");
       }
     },
     // User login
@@ -53,7 +53,7 @@ const resolvers = {
         const user = await User.findOne({ email });
         // If not found, throw new Error
         if (!user) {
-          throw new Error("User not found");
+          throw new Error(" User not found");
         }
         // Verify the user entered the correct password
         const validPassword = await user.isCorrectPassword(password)
