@@ -9,8 +9,16 @@ export const theme = createTheme({
       styleOverrides: {
         filledSuccess: {
           backgroundColor: "#8EE4AF",
-          color: "#05386B"
+          color: "#05386B",
+          fontFamily: "Montserrat",
+          letterSpacing: ".15rem",
         },
+        filledError: {
+          backgroundColor: "#FFC27F",
+          color: "#1A191D",
+          fontFamily: "Montserrat",
+          letterSpacing: ".15rem"
+        }
       }
     }
   }

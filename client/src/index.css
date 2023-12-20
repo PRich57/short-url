@@ -21,12 +21,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: linear-gradient(217deg, rgba(142,228,175,.8), rgba(142,228,175,0) 70.71%),
-            linear-gradient(80deg, rgba(0, 179, 255, 0.8), rgba(0, 115, 255, 0) 70.71%),
-            linear-gradient(336deg, rgba(0, 255, 213, 0.842), rgba(64, 0, 255, 0) 70.71%);
+              linear-gradient(80deg, rgba(0, 179, 255, 0.8), rgba(0, 115, 255, 0) 70.71%),
+              linear-gradient(336deg, rgba(0, 255, 213, 0.842), rgba(64, 0, 255, 0) 70.71%);
 }
 
 h1 {
-  color: #8EE4AF;
+  /* color: #8EE4AF; */
+  color: #FFC27F;
   letter-spacing: .4rem !important;
   text-transform: uppercase;
 }

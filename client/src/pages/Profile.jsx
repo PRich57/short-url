@@ -77,12 +77,20 @@ function Profile() {
           variant="h5"
           style={{
             marginBottom: "10px",
-            color: "white",
+            color: "#8EE4AF",
             letterSpacing: ".2rem",
           }}
         >
-          My Complete List of URLs:
+          My URLs:
         </Typography>
+        <p style={{ 
+          color: "#FFC27F", 
+          marginBottom: "0", 
+          paddingBottom: "0" 
+          }}
+        >
+          Warning: Deleting a short URL will remove it permanently and it will no longer redirect to the original source. 
+        </p>
         {urlsData && (
           <RecentURLsList
             urls={urlsData.getUserUrls}

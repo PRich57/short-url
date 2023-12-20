@@ -1,3 +1,5 @@
+// URL regex pattern source: https://www.freecodecamp.org/news/how-to-write-a-regular-expression-for-a-url/
+
 const jwt = require('jsonwebtoken');
 const { User, Url } = require('../models');
 const ShortUniqueId = require('short-unique-id');
@@ -71,6 +73,15 @@ const resolvers = {
     },
     // Shorten URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
+      // Validate original url format to be sure it is a url
+      // Credit for the source of this regex is at the top of this file
+      const pattern = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
+
+      if (!pattern.test(originalUrl)) {
+        throw new Error(" Original URL doesn't appear to be in valid URL format.")
+      }
+
+      
       // Create a random number function for values 1-10
       function getRandomNumber() {
         return Math.floor(Math.random() * 8) + 1;
@@ -81,7 +92,7 @@ const resolvers = {
 
       try {
         if (!originalUrl) {
-          throw new Error("Original URL is required!");
+          throw new Error(" Original URL is required!");
         }
 
         let shortId;
@@ -90,7 +101,7 @@ const resolvers = {
         if (customSlug) {
           // Check if the customSlug is url-safe with regex
           if (/[^A-Za-z0-9_-]/.test(customSlug)) {
-            throw new Error("Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
+            throw new Error(" Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
           }
           // Check if customSlug already exists
           const existingUrl = await Url.findOne({ shortId: customSlug });
