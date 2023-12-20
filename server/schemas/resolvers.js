@@ -170,7 +170,7 @@ const resolvers = {
       try {
         // Get the user info from context
         const loggedInUserId = context.user.id;
-
+        console.log(context);
         // Make sure the request matches the logged-in user's ID
         if (userId !== loggedInUserId) {
           throw new Error('Not authorized to delete this user');
@@ -186,6 +186,9 @@ const resolvers = {
       } catch (err) {
         throw new Error(err.message);
       }
+    },
+    setDismissDeleteUrlDialog: async (_, { userId, dismiss }) => {
+      return await User.findByIdAndUpdate(userId, { dismissDeleteUrlDialog: dismiss }, { new: true });
     },
   },
 };

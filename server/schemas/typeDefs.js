@@ -4,6 +4,7 @@ const typeDefs = `
     username: String
     email: String
     token: String
+    dismissDeleteUrlDialog: Boolean
   }
 
   type Url {
@@ -22,6 +23,7 @@ const typeDefs = `
 
   type Query {
     getUserUrls(userId: ID!): [Url]
+    getUserData(userId: ID!): User
   }
 
   type Mutation {
@@ -30,6 +32,7 @@ const typeDefs = `
     shortenUrl(originalUrl: String!, userId: ID!, customSlug: String): Url
     deleteUrl(urlId: ID!): DeleteResponse
     deleteUser(userId: ID!): DeleteResponse
+    setDismissDeleteUrlDialog(userId: ID!, dismiss: Boolean!): User
   }
 `;
 

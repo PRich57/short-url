@@ -52,3 +52,12 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const DISMISS_DIALOG = gql`
+  mutation Mutation($userId: ID!, $dismiss: Boolean!) {
+    setDismissDeleteUrlDialog(userId: $userId, dismiss: $dismiss) {
+      _id
+      dismissDeleteUrlDialog
+    }
+  }
+`;

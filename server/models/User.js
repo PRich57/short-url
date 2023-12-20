@@ -23,6 +23,11 @@ const userSchema = new Schema({
       "Minimum 8 characters, must include lowercase, uppercase, number, and special character",
     ],
   },
+  // Add field for permanent dismissal of delete url dialog
+  dismissDeleteUrlDialog: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // Hash the password with bcrypt before saving to user model
