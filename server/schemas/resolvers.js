@@ -19,6 +19,10 @@ const resolvers = {
           fullShortUrl: `http://localhost:3001/${url.shortId}`
         };
       });
+    },
+    // Get user data
+    getUserData: async (_, { userId }) => {
+      return await User.findById(userId);
     }
   },
   Mutation: {

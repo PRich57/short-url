@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { GET_USER_URLS } from "../utils/queries";
+import { GET_USER_URLS, GET_USER_DATA } from "../utils/queries";
 import { DELETE_URL, DELETE_USER, DISMISS_DIALOG } from "../utils/mutations";
 import { useUser } from "../components/UserContext";
 import ShorteningForm from "../components/ShorteningForm";
@@ -32,22 +32,40 @@ function Profile() {
   const [deletionType, setDeletionType] = useState(null);
   const [dialogMessage, setDialogMessage] = useState("");
 
-  const { data: urlsData, refetch } = useQuery(GET_USER_URLS, {
+  const { data: urlsData, refetch: refetchUrls } = useQuery(GET_USER_URLS, {
     variables: { userId: user._id },
     fetchPolicy: "network-only",
   });
 
+  const { data: userData } = useQuery(GET_USER_DATA, {
+    variables: { userId: user._id },
+  });
+
+  // Check user's preferences on component mount
   useEffect(() => {
-    refetch();
-  }, []);
+    refetchUrls();
+    if (userData && userData.getUserData) {
+      setDoNotShowAgain(userData.getUserData.dismissDeleteUrlDialog);
+    }
+  }, [userData, refetchUrls]);
 
   // Delete url mutation hook
   const [deleteUrl] = useMutation(DELETE_URL, {
     // Refetch for real time update
-    onCompleted: () => {
-      refetch();
-    },
+    onCompleted: () => refetchUrls(),
   });
+
+  // Delete user hook
+  const [deleteUser] = useMutation(DELETE_USER, {
+    onCompleted: () => {
+      localStorage.removeItem("token");
+      navigate("/");
+    },
+    onError: (err) => console.error(err.message),
+  });
+
+  // Use new field added to user to permanently dismiss dialog once selected
+  const [setDismissDialog] = useMutation(DISMISS_DIALOG);
 
   // Handle dialog open and message depending on type
   const handleDialogOpen = (urlId, type = "url") => {
@@ -81,7 +99,7 @@ function Profile() {
     handleDialogClose();
   };
 
-  // Function for calling delete mutation
+  // Function for calling delete url mutation
   const handleDeleteUrl = async (urlId) => {
     try {
       await deleteUrl({
@@ -89,39 +107,23 @@ function Profile() {
       });
     } catch (err) {
       console.error(err.message);
-      return [];
     }
   };
 
-  // Delete user hook
-  const [deleteUser] = useMutation(DELETE_USER, {
-    onCompleted: () => {
-      localStorage.removeItem("token");
-      navigate("/");
-    },
-    onError: (err) => {
-      console.error(err.message);
-    },
-  });
-
-  const handleDeleteUser = async (userId) => {
+  // Function for calling delete user mutation
+  const handleDeleteUser = async () => {
     try {
       await deleteUser({
         variables: { userId: user._id },
       });
     } catch (err) {
       console.error(err.message);
-      return [];
     }
   };
-
-  // Use new field added to user to permanently dismiss dialog once selected
-  const [setDismissDialog] = useMutation(DISMISS_DIALOG);
 
   const handleCheckboxChange = async (event) => {
     const dismiss = event.target.checked;
     setDoNotShowAgain(dismiss);
-
     try {
       await setDismissDialog({
         variables: { userId: user._id, dismiss }
@@ -130,13 +132,6 @@ function Profile() {
       console.error(err.message);
     }
   };
-
-  // Check user's preference on component mount
-  useEffect(() => {
-    if (useRouteLoaderData.dismissDeleteUrlDialog) {
-      setDoNotShowAgain(userData.dismissDeleteUrlDialog);
-    }
-  }, [userData]);
 
   return (
     <div>
@@ -149,7 +144,7 @@ function Profile() {
         className="paper"
       >
         <h1>{user.username}</h1>
-        <ShorteningForm onShorten={refetch} />
+        <ShorteningForm onShorten={refetchUrls} />
         <Typography
           variant="h5"
           style={{
@@ -179,7 +174,6 @@ function Profile() {
         </Button>
       </Paper>
       <Dialog
-        className="dialog-container"
         open={openDialog}
         onClose={handleDialogClose}
         aria-labelledby="alert-dialog-title"
@@ -200,7 +194,7 @@ function Profile() {
                 control={
                   <Checkbox
                     checked={doNotShowAgain}
-                    onChange={(e) => setDoNotShowAgain(e.target.checked)}
+                    onChange={handleCheckboxChange}
                     className="checkbox"
                   />
                 }

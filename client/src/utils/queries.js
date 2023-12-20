@@ -12,3 +12,15 @@ export const GET_USER_URLS = gql`
     }
   }
 `;
+
+export const GET_USER_DATA = gql`
+  query Query($userId: ID!) {
+    getUserData(userId: $userId) {
+      _id
+      dismissDeleteUrlDialog
+      email
+      token
+      username
+    }
+  }
+`;
