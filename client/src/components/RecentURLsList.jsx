@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { DeleteOutline } from "@mui/icons-material"
 
-function RecentURLsList({ urls, onDeleteUrl, showDelete }) {
+function RecentURLsList({ urls, onDeleteClick, showDelete }) {
   return (
     <List style={{ padding: "0 20px" }}>
       {urls.map((url) => (
@@ -20,7 +20,7 @@ function RecentURLsList({ urls, onDeleteUrl, showDelete }) {
             <IconButton 
               edge="end" 
               aria-label="delete" 
-              onClick={() => onDeleteUrl(url._id)}
+              onClick={() => onDeleteClick(url._id)}
             >
               <DeleteOutline style={{ color: "white" }} />
             </IconButton>

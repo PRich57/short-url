@@ -26,9 +26,7 @@ body {
 }
 
 h1 {
-  /* color: #8EE4AF; */
   color: #FFC27F;
-  /* color: #ff7a4d; */
   letter-spacing: .4rem !important;
   text-transform: uppercase;
 }
@@ -37,7 +35,7 @@ h2, h3, h4, h5, h6, button {
   letter-spacing: .2rem !important;
 }
 
-h5, h6, h3, p, button, label {
+h5, h6, h3, h2, p, span, button, label {
   font-family: 'Montserrat', sans-serif !important;
 }
 
@@ -51,6 +49,27 @@ h5 {
   min-width: 40vw !important;
   border-radius: 9px !important;
   margin: 3 auto !important;
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  border-radius: 9px !important;
+  background-color: #05386B !important;
+}
+
+.dialog-title, 
+.dialog-content, 
+.dialog-actions, 
+.checkbox-text, 
+.checkbox, 
+.delete, 
+.dialog-text, 
+.cancel {
+  color: #FFC27F !important;
+}
+
+.dialog-actions {
+  display: flex !important;
+  justify-content: space-evenly !important;
 }
 
 ul {
@@ -75,5 +94,10 @@ ul {
 @media screen and (max-width: 899px) {
   .desktopMenu {
     display: none;
+  }
+
+  .dialog-actions {
+    flex-direction: column-reverse !important;
+    align-items: center;
   }
 }
