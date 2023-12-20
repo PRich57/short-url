@@ -12,30 +12,43 @@ module.exports = {
     },
   }),
 
-  authMiddleware: function ({ req }) {
+  authMiddleware: function ({ req, res }) {
+    // Initialize an empty user object
+    let authContext = {
+      user: null,
+    };
+
+    // Extract the token from the headers
     let token = req.headers.authorization;
-
-    if (!token) {
-      return req;
-    }
-
+    
     if (token) {
+      // Remove "Bearer" if it's present
       token = token.split(' ').pop().trim();
+    }
+    // console.log(token);
+
+    // If a token doesn't exist, return the request obj as is
+    if (!token) {
+      return authContext;
     }
 
     try {
-      const { data } = jwt.verify(token, JWT_SECRET, { maxAge: expiration });
-      req.user = data;
-    } catch (error) {
-      if (error instanceof jwt.TokenExpiredError) {
+      // Verify the token and extract user data
+      const decoded = jwt.verify(token, JWT_SECRET, { maxAge: expiration });
+      // console.log(decoded);
+      authContext.user = decoded;
+    } catch (err) {
+      // If the token has expired, send error code
+      if (err instanceof jwt.TokenExpiredError) {
         console.log('Token expired');
         res.status(401).send({ message: 'Token expired. Please login again.' });
+        return authContext;
       } else {
+        // If token is invalid, log the error and continue
         console.log('Invalid token');
-        return req;
       }
     }
 
-    return req;
+    return authContext;
   },
 };

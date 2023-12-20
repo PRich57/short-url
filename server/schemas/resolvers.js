@@ -127,7 +127,9 @@ const resolvers = {
     deleteUrl: async (_, { urlId }, context) => {
       try {
         // Get user from context
-        const loggedInUserId = context.userId;
+        const loggedInUserId = await context.user.id;
+
+        // console.log(context.user.id);
 
         // Find URL by its ID
         const url = await Url.findById(urlId);
@@ -151,7 +153,7 @@ const resolvers = {
     deleteUser: async (_, { userId }, context) => {
       try {
         // Get the user info from context
-        const loggedInUserId = context.userId;
+        const loggedInUserId = context.user.id;
 
         // Make sure the request matches the logged-in user's ID
         if (userId !== loggedInUserId) {

@@ -34,3 +34,21 @@ export const SHORTEN_URL = gql`
     }
   }
 `;
+
+export const DELETE_URL = gql`
+  mutation Mutation($urlId: ID!) {
+    deleteUrl(urlId: $urlId) {
+      message
+      success
+    }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation Mutation($userId: ID!) {
+    deleteUser(userId: $userId) {
+      message
+      success
+    }
+  }
+`;

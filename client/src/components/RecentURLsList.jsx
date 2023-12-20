@@ -6,9 +6,11 @@ import {
   Typography,
   Paper,
   Link,
+  IconButton,
 } from "@mui/material";
+import { DeleteOutline } from "@mui/icons-material"
 
-function RecentURLsList({ urls }) {
+function RecentURLsList({ urls, onDeleteUrl, showDelete }) {
   return (
     <Paper
       style={{ padding: "20px", backgroundColor: "#444444" }}
@@ -16,7 +18,18 @@ function RecentURLsList({ urls }) {
     >
       <List>
         {urls.map((url) => (
-          <ListItem key={url._id}>
+          <ListItem 
+            key={url._id}
+            secondaryAction={showDelete && (
+              <IconButton 
+                edge="end" 
+                aria-label="delete" 
+                onClick={() => onDeleteUrl(url._id)}
+              >
+                <DeleteOutline style={{ color: "white" }} />
+              </IconButton>
+            )}
+          >
             <ListItemText
               primary={
                 <Typography
