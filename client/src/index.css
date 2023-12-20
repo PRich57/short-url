@@ -28,6 +28,7 @@ body {
 h1 {
   /* color: #8EE4AF; */
   color: #FFC27F;
+  /* color: #ff7a4d; */
   letter-spacing: .4rem !important;
   text-transform: uppercase;
 }
@@ -45,9 +46,9 @@ h5 {
 }
 
 .paper {
-  max-width: 1480px !important;
+  max-width: 1280px !important;
   background-color: #05386B !important;
-  min-width: 35vw !important;
+  min-width: 40vw !important;
   border-radius: 9px !important;
   margin: 3 auto !important;
 }
@@ -58,6 +59,7 @@ ul {
 
 .recent-urls {
   box-shadow: none !important;
+  max-width: 32vw !important;
 }
 
 .MuiToolbar-root {

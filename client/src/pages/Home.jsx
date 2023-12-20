@@ -35,7 +35,7 @@ function Home() {
               variant="h5"
               style={{
                 marginBottom: "10px",
-                color: "white",
+                color: "#8EE4AF",
                 letterSpacing: ".2rem",
               }}
             >

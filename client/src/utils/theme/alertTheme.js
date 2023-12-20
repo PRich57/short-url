@@ -15,7 +15,7 @@ export const theme = createTheme({
         },
         filledError: {
           backgroundColor: "#FFC27F",
-          color: "#1A191D",
+          color: "#05386B",
           fontFamily: "Montserrat",
           letterSpacing: ".15rem"
         }

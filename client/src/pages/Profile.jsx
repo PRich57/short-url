@@ -71,7 +71,7 @@ function Profile() {
         }}
         className="paper"
       >
-        <h1 style={{ textTransform: "uppercase" }}>{user.username}</h1>
+        <h1>{user.username}</h1>
         <ShorteningForm onShorten={refetch} />
         <Typography
           variant="h5"
@@ -84,7 +84,7 @@ function Profile() {
           My URLs:
         </Typography>
         <p style={{ 
-          color: "#FFC27F", 
+          color: "#ff4e3b", 
           marginBottom: "0", 
           paddingBottom: "0" 
           }}

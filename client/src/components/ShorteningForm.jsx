@@ -55,7 +55,7 @@ function ShorteningForm({ onShorten }) {
         console.error("Error caught during mutation:", err);
       }
     } else {
-      setSnackbarMessage('You must be logged in to use this application.');
+      setSnackbarMessage('You must be logged in to use this feature');
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     }

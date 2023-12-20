@@ -12,66 +12,61 @@ import { DeleteOutline } from "@mui/icons-material"
 
 function RecentURLsList({ urls, onDeleteUrl, showDelete }) {
   return (
-    <Paper
-      style={{ padding: "20px", backgroundColor: "#444444" }}
-      className="paper recent-urls"
-    >
-      <List>
-        {urls.map((url) => (
-          <ListItem 
-            key={url._id}
-            secondaryAction={showDelete && (
-              <IconButton 
-                edge="end" 
-                aria-label="delete" 
-                onClick={() => onDeleteUrl(url._id)}
+    <List style={{ padding: "0 20px" }}>
+      {urls.map((url) => (
+        <ListItem 
+          key={url._id}
+          secondaryAction={showDelete && (
+            <IconButton 
+              edge="end" 
+              aria-label="delete" 
+              onClick={() => onDeleteUrl(url._id)}
+            >
+              <DeleteOutline style={{ color: "white" }} />
+            </IconButton>
+          )}
+        >
+          <ListItemText
+            primary={
+              <Typography
+                style={{
+                  marginBottom: "10px",
+                  color: "white",
+                  wordBreak: "break-word",
+                }}
               >
-                <DeleteOutline style={{ color: "white" }} />
-              </IconButton>
-            )}
-          >
-            <ListItemText
-              primary={
-                <Typography
-                  style={{
-                    marginBottom: "10px",
-                    color: "white",
-                    wordBreak: "break-word",
-                  }}
+                Short URL :{" "}
+                <Link
+                  href={url.fullShortUrl}
+                  target="_blank"
+                  style={{ color: "#8EE4AF", fontSize: "calc(13px + .2vw)" }}
                 >
-                  Short URL :{" "}
-                  <Link
-                    href={url.fullShortUrl}
-                    target="_blank"
-                    style={{ color: "#8EE4AF", fontSize: "calc(13px + .2vw)" }}
-                  >
-                    {url.fullShortUrl}
-                  </Link>
-                </Typography>
-              }
-              secondary={
-                <Typography
-                  style={{
-                    marginBottom: "10px",
-                    color: "white",
-                    wordBreak: "break-all",
-                  }}
+                  {url.fullShortUrl}
+                </Link>
+              </Typography>
+            }
+            secondary={
+              <Typography
+                style={{
+                  marginBottom: "10px",
+                  color: "white",
+                  wordBreak: "break-all",
+                }}
+              >
+                Original URL :{" "}
+                <Link
+                  href={url.originalUrl}
+                  target="_blank"
+                  style={{ color: "#ff4e3b", fontSize: "calc(9px + .1vw)" }}
                 >
-                  Original URL :{" "}
-                  <Link
-                    href={url.originalUrl}
-                    target="_blank"
-                    style={{ color: "#D86C70", fontSize: "calc(9px + .1vw)" }}
-                  >
-                    {url.originalUrl}
-                  </Link>
-                </Typography>
-              }
-            />
-          </ListItem>
-        ))}
-      </List>
-    </Paper>
+                  {url.originalUrl}
+                </Link>
+              </Typography>
+            }
+          />
+        </ListItem>
+      ))}
+    </List>
   );
 }
 

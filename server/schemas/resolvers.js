@@ -73,6 +73,11 @@ const resolvers = {
     },
     // Shorten URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
+      // Check for originalUrl
+      if (!originalUrl) {
+        throw new Error(" Original URL required")
+      }
+
       // Validate original url format to be sure it is a url
       // Credit for the source of this regex is at the top of this file
       const pattern = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
