@@ -15,8 +15,7 @@ const resolvers = {
       .sort({ createdAt: -1 });
       return urls.map(url => {
         return {
-          ...url._doc,
-          fullShortUrl: `https://short-url50-ca670a86f511.herokuapp.com/${url.shortId}`
+          ...url._doc
         };
       });
     },
@@ -153,7 +152,7 @@ const resolvers = {
         }
 
         // Combine shortId with base domain
-        const fullShortUrl = `https://short-url50-ca670a86f511.herokuapp.com/${shortId}`
+        const fullShortUrl = shortId
         // Save the new URL to the database and return it
         const url = new Url({ originalUrl, shortId, user: userId });
         await url.save();
