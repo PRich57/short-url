@@ -34,24 +34,25 @@ const startApolloServer = async () => {
     })
   );
 
-  // Set up the redirect from shortened url to original url
-  app.get('https://short-url50-ca670a86f511.herokuapp.com/r/:shortId', async (req, res) => {
-    try {
-      const { shortId } = req.params;
-      const url = await Url.findOne({ shortId: shortId });
-      if (url) {
-        return res.redirect(url.originalUrl);
-      } else {
-        return res.status(404).send('URL not found');
-      }
-    } catch (err) {
-      console.error(err.message);
-      return res.status(500).send('Server error');
-    }
-  })
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    // Set up the redirect from shortened url to original url
+    app.get('/:shortId', async (req, res) => {
+      try {
+        const { shortId } = req.params;
+        const url = await Url.findOne({ shortId: shortId });
+        if (url) {
+          return res.redirect(url.originalUrl);
+        } else {
+          return res.status(404).send('URL not found');
+        }
+      } catch (err) {
+        console.error(err.message);
+        return res.status(500).send('Server error');
+      }
+    })
     
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
