@@ -27,7 +27,7 @@ function LoginForm({ onLogin }) {
           onChange={(e) => setEmail(e.target.value)}
           fullWidth
           margin="normal"
-          InputLabelProps={{ shrink: true }}
+          // InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
             backgroundColor: "#dedede",
@@ -41,7 +41,7 @@ function LoginForm({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
           margin="normal"
-          InputLabelProps={{ shrink: true }}
+          // InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
             backgroundColor: "#dedede",
