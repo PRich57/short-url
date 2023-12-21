@@ -179,44 +179,46 @@ function Profile() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle className="dialog-title">
-          {deletionType === "url"
-            ? "Confirm URL Deletion"
-            : "Confirm Account Deletion"}
-        </DialogTitle>
-        <DialogContent className="dialog-content">
-          <DialogContentText className="dialog-text">
-            {dialogMessage}
-          </DialogContentText>
-          <div className="dialog-actions">
-            {deletionType === "url" && (
-              <FormControlLabel
+        <div className="dialog-bg">
+          <DialogTitle className="dialog-title">
+            {deletionType === "url"
+              ? "Confirm URL Deletion"
+              : "Confirm Account Deletion"}
+          </DialogTitle>
+          <DialogContent className="dialog-content">
+            <DialogContentText className="dialog-text">
+              {dialogMessage}
+            </DialogContentText>
+            <div className="dialog-actions">
+              {deletionType === "url" && (
+                <FormControlLabel
                 control={
                   <Checkbox
-                    checked={doNotShowAgain}
-                    onChange={handleCheckboxChange}
-                    className="checkbox"
+                  checked={doNotShowAgain}
+                  onChange={handleCheckboxChange}
+                  className="checkbox"
                   />
                 }
                 label="Do not show this again"
                 className="checkbox-text"
-              />
-            )}
-            <DialogActions>
-              <Button onClick={handleDialogClose} className="cancel">
-                Cancel
-              </Button>
-              <Button
-                onClick={handleConfirmDelete}
-                color="primary"
-                autoFocus
-                className="delete"
-              >
-                Delete
-              </Button>
-            </DialogActions>
-          </div>
-        </DialogContent>
+                />
+                )}
+              <DialogActions>
+                <Button onClick={handleDialogClose} className="cancel">
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleConfirmDelete}
+                  color="primary"
+                  autoFocus
+                  className="delete"
+                  >
+                  Delete
+                </Button>
+              </DialogActions>
+            </div>
+          </DialogContent>
+        </div>
       </Dialog>
     </div>
   );

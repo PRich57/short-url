@@ -51,13 +51,8 @@ h5 {
   margin: 3 auto !important;
 }
 
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
-  border-radius: 9px !important;
-  background-color: #05386B !important;
-}
-
-.css-uhb51p {
-  border-radius: 9px !important;
+.dialog-bg {
+  border-radius: 0px !important;
   background-color: #05386B !important;
 }
 
