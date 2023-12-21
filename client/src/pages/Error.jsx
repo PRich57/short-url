@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function ErrorPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <h2>Oops!</h2>
@@ -10,8 +12,8 @@ function ErrorPage() {
       <Button 
         variant='contained' 
         color='primary' 
-        onClick={
-          () => window.history.back()
+        onClick={() =>
+          navigate(window.history.back())
         }
       >
         GO BACK

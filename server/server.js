@@ -33,6 +33,22 @@ const startApolloServer = async () => {
       context: authMiddleware,
     })
   );
+
+  // Set up the redirect from shortened url to original url
+  app.get('/:shortId', async (req, res) => {
+    try {
+      const { shortId } = req.params;
+      const url = await Url.findOne({ shortId: shortId });
+      if (url) {
+        return res.redirect(url.originalUrl);
+      } else {
+        return res.status(404).send('URL not found');
+      }
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send('Server error');
+    }
+  })
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -41,17 +57,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
-
-  // Set up the redirect from shortened url to original url
-  app.get('/:shortId', async (req, res) => {
-    const { shortId } = req.params;
-    const url = await Url.findOne({ shortId: shortId });
-    if (url) {
-      return res.redirect(url.originalUrl);
-    } else {
-      return res.status(404).send('URL not found');
-    }
-  })
   
   db.once('open', () => {
     app.listen(PORT, () => {
