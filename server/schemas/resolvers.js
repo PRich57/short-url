@@ -16,7 +16,7 @@ const resolvers = {
       return urls.map(url => {
         return {
           ...url._doc,
-          fullShortUrl: `http://localhost:3001/${url.shortId}`
+          fullShortUrl: `https://short-url50-ca670a86f511.herokuapp.com/${url.shortId}`
         };
       });
     },
@@ -29,27 +29,46 @@ const resolvers = {
     // User registration
     register: async (_, { username, email, password }) => {
       try {
-        // Check if the user already exists in the database
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        // Check if the user already exists in db
+        const existingEmail = await User.findOne({ email: email });
+        if (existingEmail) {
           // If the user exists, throw new Error
-          throw new Error('User already exists');
+          throw new Error('This email address is already in use');
         }
+        
+        // Check if username already exists in db
+        const existingUsername = await User.findOne({ username: username })
+        if (existingUsername) {
+          throw new Error("This username is taken");
+        }
+
         // Create new user with their input
         const newUser = new User({
           username,
           email,
           password,
         });
+
         // Save user
         const savedUser = await newUser.save();
 
         // Create a json web token with a 2 hour time limit
         const token = jwt.sign({ email: savedUser.email, id: savedUser._id }, JWT_SECRET, { expiresIn: '2h' });
+
         // Return the schema based properties of the user and the token
         return { ...savedUser._doc, token };
       } catch (err) {
-        throw new Error(" All fields required");
+        if (err.name === 'ValidationError') {
+          // Extract mongoose validation errors from user model
+          let errors = Object.values(err.errors).map(el => el.message);
+          let errorMessage = errors.join(' ');
+
+          // Throw error message from validation and add a space between the colon and the message
+          throw new Error(errorMessage);
+        } else {
+          // Other errors
+          throw new Error(err.message);
+        }
       }
     },
     // User login
@@ -59,7 +78,7 @@ const resolvers = {
         const user = await User.findOne({ email });
         // If not found, throw new Error
         if (!user) {
-          throw new Error(" User not found");
+          throw new Error("User not found");
         }
         // Verify the user entered the correct password
         const validPassword = await user.isCorrectPassword(password)
@@ -79,7 +98,7 @@ const resolvers = {
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
       // Check for originalUrl
       if (!originalUrl) {
-        throw new Error(" Original URL required")
+        throw new Error("Original URL is required")
       }
 
       // Validate original url format to be sure it is a url
@@ -87,7 +106,7 @@ const resolvers = {
       const pattern = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
 
       if (!pattern.test(originalUrl)) {
-        throw new Error(" Original URL doesn't appear to be in valid URL format.")
+        throw new Error("Original URL doesn't appear to be in valid URL format.")
       }
 
       
@@ -101,7 +120,7 @@ const resolvers = {
 
       try {
         if (!originalUrl) {
-          throw new Error(" Original URL is required!");
+          throw new Error("Original URL is required!");
         }
 
         let shortId;
@@ -110,7 +129,7 @@ const resolvers = {
         if (customSlug) {
           // Check if the customSlug is url-safe with regex
           if (/[^A-Za-z0-9_-]/.test(customSlug)) {
-            throw new Error(" Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
+            throw new Error("Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
           }
           // Check if customSlug already exists
           const existingUrl = await Url.findOne({ shortId: customSlug });
@@ -134,7 +153,7 @@ const resolvers = {
         }
 
         // Combine shortId with base domain
-        const fullShortUrl = `http://localhost:3001/${shortId}`
+        const fullShortUrl = `https://short-url50-ca670a86f511.herokuapp.com/${shortId}`
         // Save the new URL to the database and return it
         const url = new Url({ originalUrl, shortId, user: userId });
         await url.save();

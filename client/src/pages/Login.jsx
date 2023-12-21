@@ -42,7 +42,7 @@ function Login() {
       setOpenSnackbar(true);
       navigate('/home');
     } catch (err) {
-      setSnackbarMessage('Login failed:' + err.message);
+      setSnackbarMessage('Login Failed: ' + err.message);
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     }

@@ -12,7 +12,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    match: [/.+@.+\..+/, "Must match an email address format"],
+    match: [/.+@.+\..+/, " Email must match an email address format (example@email.com)"],
   },
   password: {
     type: String,
@@ -20,7 +20,7 @@ const userSchema = new Schema({
     minLength: 8,
     match: [
       /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
-      "Minimum 8 characters, must include lowercase, uppercase, number, and special character",
+      " Password requires at least 8 characters, must include uppercase, lowercase, number, and special character",
     ],
   },
   // Add field for permanent dismissal of delete url dialog

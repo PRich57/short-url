@@ -33,12 +33,12 @@ function Register() {
   const handleRegister = async (username, email, password) => {
     try {
       await registerUser({ variables: { username, email, password } });
-      setSnackbarMessage('Registration successful. You can now log in');
+      setSnackbarMessage('Registration Successful. You can now log in');
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
       navigate('/');
     } catch (err) {
-      setSnackbarMessage('Registration failed:' + err.message);
+      setSnackbarMessage('Registration Failed: ' + err.message);
       setSnackbarSeverity('error');
       setOpenSnackbar(true);
     }
@@ -51,7 +51,7 @@ function Register() {
         <Snackbar 
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={openSnackbar} 
-          autoHideDuration={4000} 
+          autoHideDuration={6000} 
           onClose={handleSnackbarClose}
           >
           <Alert 

@@ -54,11 +54,12 @@ function RegisterForm({ onRegister }) {
           fullWidth
           margin="normal"
           style={{
-            margin: "20px 0",
+            marginTop: "20px",
             backgroundColor: "#dedede",
             borderRadius: "6px",
           }}
         />
+        <p style={{ fontSize: "11px", color: "#FFC27F", marginTop: "0", marginBottom: "20px" }}>Minimum 8 characters and at least 1 of each: uppercase and lowercase letters, number, and special character. </p>
         <Button type="submit" variant="contained" color="primary">
           SIGN UP
         </Button>

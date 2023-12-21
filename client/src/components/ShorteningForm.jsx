@@ -30,7 +30,7 @@ function ShorteningForm({ onShorten }) {
       setUrl("");
       setCustomSlug("");
       onShorten();
-      setSnackbarMessage('URL successfully shortened');
+      setSnackbarMessage('URL Successfully Shortened');
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
     },
@@ -52,7 +52,7 @@ function ShorteningForm({ onShorten }) {
           variables: { originalUrl: url, userId: user._id, customSlug },
         });
       } catch (err) {
-        console.error("Error caught during mutation:", err);
+        console.error("Error caught during mutation: ", err);
       }
     } else {
       setSnackbarMessage('You must be logged in to use this feature');
