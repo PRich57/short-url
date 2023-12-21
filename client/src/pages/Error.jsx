@@ -13,7 +13,7 @@ function ErrorPage() {
         variant='contained' 
         color='primary' 
         onClick={() =>
-          navigate(window.history.back())
+          navigate('/home')
         }
       >
         GO BACK

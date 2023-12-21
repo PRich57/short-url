@@ -35,7 +35,7 @@ const startApolloServer = async () => {
   );
 
   // Set up the redirect from shortened url to original url
-  app.get('https://short-url50-ca670a86f511.herokuapp.com/:shortId', async (req, res) => {
+  app.get('https://short-url50-ca670a86f511.herokuapp.com/r/:shortId', async (req, res) => {
     try {
       const { shortId } = req.params;
       const url = await Url.findOne({ shortId: shortId });
