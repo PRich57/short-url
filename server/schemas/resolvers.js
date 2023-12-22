@@ -63,7 +63,7 @@ const resolvers = {
           let errors = Object.values(err.errors).map(el => el.message);
           let errorMessage = errors.join(' ');
 
-          // Throw error message from validation and add a space between the colon and the message
+          // Throw error message from validation
           throw new Error(errorMessage);
         } else {
           // Other errors

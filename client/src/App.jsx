@@ -16,7 +16,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<RootRoute />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
@@ -26,5 +27,11 @@ function App() {
     </ApolloProvider>
   )
 }
+
+// Declare RootRoute for dynamically rendering Home or Login based on auth
+const RootRoute = () => {
+  const isAuthenticated = !!localStorage.getItem('token');
+  return isAuthenticated ? <Home /> : <Login />;
+};
 
 export default App;
