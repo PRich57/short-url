@@ -16,7 +16,7 @@ const resolvers = {
       return urls.map(url => {
         return {
           ...url._doc,
-          fullShortUrl: `https://short-url50-ca670a86f511.herokuapp.com/${url.shortId}`
+          fullShortUrl: `short-url50-ca670a86f511.herokuapp.com/${url.shortId}`
         };
       });
     },
