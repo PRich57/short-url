@@ -38,7 +38,9 @@ const startApolloServer = async () => {
   app.get('/:shortId', async (req, res) => {
     try {
       const { shortId } = req.params;
+      console.log(req.params);
       const url = await Url.findOne({ shortId: shortId });
+      console.log(url);
       if (url) {
         return res.redirect(url.originalUrl);
       } else {
@@ -52,7 +54,7 @@ const startApolloServer = async () => {
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
-
+    
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });

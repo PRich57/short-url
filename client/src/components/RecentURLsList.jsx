@@ -12,7 +12,7 @@ import { DeleteOutline } from "@mui/icons-material"
 
 function RecentURLsList({ urls, onDeleteClick, showDelete }) {
   return (
-    <List style={{ padding: "0 20px" }}>
+    <List style={{ padding: "0 15px" }}>
       {urls.map((url) => (
         <ListItem 
           key={url._id}
