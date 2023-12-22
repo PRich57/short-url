@@ -63,7 +63,7 @@ function Header() {
     setUser(null);
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    navigate("/");
+    navigate("/login");
   };
 
 
@@ -121,7 +121,7 @@ function Header() {
         <MenuItem
           key="login"
           onClick={() => {
-            navigate("/");
+            navigate("/login");
             handleMenuClose();
             handleTabClick("login");
           }}
@@ -225,7 +225,7 @@ function Header() {
                 <Button 
                   color="inherit" 
                   onClick={() => {
-                    navigate("/");
+                    navigate("/login");
                     handleTabClick("login");
                   }}
                   className={getButtonClass("login")}
