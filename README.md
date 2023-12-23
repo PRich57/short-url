@@ -1,6 +1,6 @@
 # Short URL
 
-![License: MIT](https://img.shields.io/badge/MIT_License-blue)
+![License: MIT](https://img.shields.io/badge/MIT_License-8EE4AF)
 
 ## Description
 
