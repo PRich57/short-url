@@ -1,5 +1,7 @@
 # Short URL
 
+![License: MIT](https://img.shields.io/badge/MIT_License-blue)
+
 ## Description
 
 Welcome to Short URL, an innovative platform designed to simplify and optimize your web browsing experience. Short URL enables users to efficiently shorten long URLs for easier sharing and management. The intuitive interface offers both custom and automated short URL generation, enhancing user convenience and web navigation efficiency.
