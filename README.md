@@ -91,8 +91,6 @@ Short URL is an ongoing solo project, and while it's primarily managed by me, I 
 
 Short URL is not just a demonstration of my technical skills but a tool with practical applications. With a commitment to continuous improvement and innovation, the following developments are on the horizon:
 
-##### Domain Acquisition:
-Plans are in place to acquire a dedicated short domain, aligning with the core purpose of Short URL and enhancing its real-world usability.
 ##### Account Management Enhancements:
 Introducing features for users to update their account information, including username, email, and password, ensuring a more personalized and secure experience
 ##### Enhanced Security:
