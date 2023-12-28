@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Paper } from "@mui/material";
+import { TextField, Button, Paper, Link } from "@mui/material";
 
 function LoginForm({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -57,6 +57,26 @@ function LoginForm({ onLogin }) {
           GO
         </Button>
       </form>
+      <p
+        style={{
+          fontSize: "11px",
+          color: "#FFC27F",
+          marginTop: "0",
+          marginBottom: "20px",
+        }}
+      >
+        Don't have an account?{" "}
+        <Link
+          href="/register"
+          style={{
+            color: "#8EE4AF",
+            cursor: "pointer",
+            textDecoration: "none",
+          }}
+        >
+          SIGN UP!
+        </Link>
+      </p>
     </Paper>
   );
 }

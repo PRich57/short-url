@@ -110,7 +110,7 @@ function Header() {
           onClick={handleLogout} 
           className="btn" 
           sx={{
-            color: "white"
+            color: "#FFC27F"
           }}
         >
           SIGN OUT
@@ -216,7 +216,7 @@ function Header() {
                 >
                   PROFILE
                 </Button>
-                <Button  color="inherit" onClick={handleLogout} className="btn">
+                <Button style={{ color: "#FFC27F"}} color="inherit" onClick={handleLogout} className="btn">
                   SIGN OUT
                 </Button>
               </>

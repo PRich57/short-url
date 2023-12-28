@@ -27,7 +27,7 @@ function Home() {
         }}
         className="paper"
       >
-        <h1>Shorten URL</h1>
+        <h1>Shorten Your URL</h1>
         <ShorteningForm onShorten={refetch} />
         {urlsData && 
           <>

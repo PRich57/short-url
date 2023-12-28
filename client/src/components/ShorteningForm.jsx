@@ -73,7 +73,7 @@ function ShorteningForm({ onShorten }) {
             style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
           />
           <TextField
-            label="Custom url path (optional)"
+            label="Custom URL path (optional)"
             variant="outlined"
             fullWidth
             value={customSlug}
