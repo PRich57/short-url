@@ -34,6 +34,14 @@ const startApolloServer = async () => {
     })
   );
 
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+    
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+  }
+  
   // Set up the redirect from shortened url to original url
   app.get('/:shortId', async (req, res) => {
     try {
@@ -51,14 +59,6 @@ const startApolloServer = async () => {
       return res.status(500).send('Server error');
     }
   })
-  
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
-    
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    });
-  }
   
   db.once('open', () => {
     app.listen(PORT, () => {
