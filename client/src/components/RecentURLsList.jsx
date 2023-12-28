@@ -4,7 +4,6 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  Paper,
   Link,
   IconButton,
 } from "@mui/material";

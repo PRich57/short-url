@@ -68,7 +68,7 @@ function LoginForm({ onLogin }) {
       >
         Don't have an account?{" "}
         <Link
-          href="/register"
+          to="/register"
           style={{
             color: "#8EE4AF",
             cursor: "pointer",

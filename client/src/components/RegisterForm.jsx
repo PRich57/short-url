@@ -75,7 +75,7 @@ function RegisterForm({ onRegister }) {
       >
         Already have an account?{" "}
         <Link
-          href="/login"
+          to="/login"
           style={{
             color: "#8EE4AF",
             cursor: "pointer",
