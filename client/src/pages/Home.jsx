@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_USER_URLS } from "../utils/queries";
 import { useUser } from "../components/UserContext";
 import ShorteningForm from "../components/ShorteningForm";
 import RecentURLsList from "../components/RecentURLsList";
-import { Paper, Typography, Link } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 function Home() {
   const { user } = useUser();
@@ -45,7 +46,7 @@ function Home() {
             <Typography variant="h6" style={{ marginBottom: "10px", color: "white" }}>
               Visit your{" "}
               <Link
-                href="/profile"
+                to="/profile"
                 style={{ textDecoration: "none", color: "#8EE4AF" }}
                 >
                 Profile
