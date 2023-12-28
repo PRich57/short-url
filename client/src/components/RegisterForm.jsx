@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { TextField, Button, Paper, Link } from "@mui/material";
+import { Link } from "react-router-dom";
+import { TextField, Button, Paper } from "@mui/material";
 
 function RegisterForm({ onRegister }) {
   const [username, setUsername] = useState("");
