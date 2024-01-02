@@ -31,6 +31,7 @@ const resolvers = {
       try {
         // Check if the user already exists in db
         const existingEmail = await User.findOne({ email: email });
+
         if (existingEmail) {
           // If the user exists, throw new Error
           throw new Error('This email address is already in use');
@@ -53,7 +54,7 @@ const resolvers = {
         const savedUser = await newUser.save();
 
         // Create a json web token with a 2 hour time limit
-        const token = jwt.sign({ email: savedUser.email, id: savedUser._id }, JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ email: savedUser.email, id: savedUser._id }, JWT_SECRET, { expiresIn: '24h' });
 
         // Return the schema based properties of the user and the token
         return { ...savedUser._doc, token };
@@ -74,12 +75,17 @@ const resolvers = {
     // User login
     login: async (_, { email, password }) => {
       try {
-        // Find user by their email
-        const user = await User.findOne({ email });
+        // Make email lowercase for case insensitive search
+        const emailLowerCase = email.toLowerCase();
+
+        // Find user by their email with regex for case insensitivity
+        const user = await User.findOne({ email: new RegExp(`^${emailLowerCase}$`, 'i') });
+
         // If not found, throw new Error
         if (!user) {
           throw new Error("User not found");
         }
+
         // Verify the user entered the correct password
         const validPassword = await user.isCorrectPassword(password)
 
@@ -87,8 +93,9 @@ const resolvers = {
         if (!validPassword) {
           throw new Error("Incorrect password");
         }
+
         // Create new token for the user with 2 hour time limit
-        const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '24h' });
         return { ...user._doc, token };
       } catch (err) {
         throw new Error(err.message);
@@ -131,20 +138,26 @@ const resolvers = {
           if (/[^A-Za-z0-9_-]/.test(customSlug)) {
             throw new Error("Custom URL must only contain alphanumeric characters, hyphens, and/or underscores");
           }
+
           // Check if customSlug already exists
           const existingUrl = await Url.findOne({ shortId: customSlug });
+
           if (existingUrl) {
             throw new Error('Custom URL already in use');
           } 
+
           // Assign value of customSlug to shortId
           shortId = customSlug;
         } else {
           // If no customSlug is provided, generate random shortId
           let isUnique = false;
+
           // Need to also make sure random id doesn't exist and regenerate if it does
           while (!isUnique) {
             shortId = uid.rnd();
+
             const existingUrl = await Url.findOne({ shortId });
+
             if (!existingUrl) {
               // Exit loop when I know it doesn't exist in database
               isUnique = true;
@@ -167,8 +180,6 @@ const resolvers = {
       try {
         // Get user from context
         const loggedInUserId = await context.user.id;
-
-        // console.log(context.user.id);
 
         // Find URL by its ID
         const url = await Url.findById(urlId);
@@ -193,7 +204,7 @@ const resolvers = {
       try {
         // Get the user info from context
         const loggedInUserId = context.user.id;
-        console.log(context);
+
         // Make sure the request matches the logged-in user's ID
         if (userId !== loggedInUserId) {
           throw new Error('Not authorized to delete this user');
