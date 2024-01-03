@@ -73,13 +73,18 @@ const resolvers = {
       }
     },
     // User login
-    login: async (_, { email, password }) => {
+    login: async (_, { identifier, password }) => {
       try {
-        // Make email lowercase for case insensitive search
-        const emailLowerCase = email.toLowerCase();
+        // Make identifier lowercase for case insensitive search
+        const identifierLowerCase = identifier.toLowerCase();
 
-        // Find user by their email with regex for case insensitivity
-        const user = await User.findOne({ email: new RegExp(`^${emailLowerCase}$`, 'i') });
+        // Find user by their email or username with regex for case insensitivity
+        const user = await User.findOne({ 
+          $or: [
+            { email: new RegExp(`^${identifierLowerCase}$`, 'i') },
+            { username: new RegExp(`^${identifierLowerCase}$`, `i`) }
+          ]
+        });
 
         // If not found, throw new Error
         if (!user) {

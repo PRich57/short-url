@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { TextField, Button, Paper } from "@mui/material";
 
 function LoginForm({ onLogin }) {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(email, password);
+    onLogin(identifier, password);
   };
 
   return (
@@ -23,9 +23,9 @@ function LoginForm({ onLogin }) {
       <h1>SIGN IN</h1>
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          label="Username or Email"
+          value={identifier}
+          onChange={(e) => setIdentifier(e.target.value)}
           fullWidth
           margin="normal"
           // InputLabelProps={{ shrink: true }}

@@ -23,7 +23,6 @@ const RootRoute = () => {
   const token = localStorage.getItem('token');
   function checkToken() {
     if (!token) {
-      console.log("No token found");
       return false;
     }
 
@@ -31,8 +30,6 @@ const RootRoute = () => {
       // Decode and check expiry
       const decodedToken = jwtDecode(token);
       const currentTime = Date.now() / 1000;
-      console.log(decodedToken.exp, "++++++++++++++++++++++");
-      console.log(currentTime, "-----------------------");
   
       // Return truthy or falsy for every check
       return decodedToken.exp > currentTime;
@@ -50,7 +47,6 @@ const RootRoute = () => {
         return;
       }
       if (!checkToken()) {
-        console.log("Token expired, calling handleLogout");
         handleLogout();
       }
     };

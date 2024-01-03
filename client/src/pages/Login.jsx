@@ -34,9 +34,9 @@ function Login() {
   }
 
   // Create handleLogin async function
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (identifier, password) => {
     try {
-      await loginUser({ variables: { email, password } });
+      await loginUser({ variables: { identifier, password } });
       setSnackbarMessage('Login successful!');
       setSnackbarSeverity('success');
       setOpenSnackbar(true);
