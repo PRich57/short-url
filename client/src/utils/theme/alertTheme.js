@@ -17,9 +17,24 @@ export const theme = createTheme({
           backgroundColor: "#FFC27F",
           color: "#05386B",
           fontFamily: "Montserrat",
-          letterSpacing: ".15rem"
-        }
-      }
-    }
-  }
+          letterSpacing: ".15rem",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: '#8EE4AF',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          color: '#dedede',
+          caretColor: '#dedede'
+        },
+      },
+    },
+  },
 });

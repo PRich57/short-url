@@ -25,6 +25,13 @@ body {
               linear-gradient(336deg, rgba(0, 255, 213, 0.842), rgba(64, 0, 255, 0) 70.71%);
 }
 
+.split-color {
+  background: linear-gradient(to right, #FFC27F calc(5px + .01vw), #8EE4AF calc(5px + 1vw));
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline;
+}
+
 h1 {
   color: #FFC27F;
   letter-spacing: .4rem !important;
@@ -45,7 +52,7 @@ h5 {
 
 .paper {
   max-width: 1280px !important;
-  background-color: #05386B !important;
+  background-color: #043d77 !important;
   min-width: 40vw !important;
   border-radius: 9px !important;
   margin: 3 auto !important;
@@ -53,7 +60,7 @@ h5 {
 
 .dialog-bg {
   border-radius: 0px !important;
-  background-color: #05386B !important;
+  background-color: #043d77 !important;
 }
 
 .dialog-title, 

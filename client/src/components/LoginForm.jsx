@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button, Paper } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function LoginForm({ onLogin }) {
   const [identifier, setIdentifier] = useState("");
@@ -22,17 +24,19 @@ function LoginForm({ onLogin }) {
     >
       <h1>SIGN IN</h1>
       <form onSubmit={handleSubmit}>
+      <ThemeProvider theme={theme}>
         <TextField
           label="Username or Email"
           value={identifier}
           onChange={(e) => setIdentifier(e.target.value)}
           fullWidth
           margin="normal"
-          // InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
-            backgroundColor: "#dedede",
+            backgroundColor: "#17477c",
             borderRadius: "6px",
+            color: "white"
           }}
         />
         <TextField
@@ -42,13 +46,15 @@ function LoginForm({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
           margin="normal"
-          // InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
-            backgroundColor: "#dedede",
+            backgroundColor: "#17477c",
             borderRadius: "6px",
+            color: "white",
           }}
-        />
+          />
+        </ThemeProvider>
         <Button
           type="submit"
           variant="contained"

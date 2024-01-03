@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button, Paper } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function RegisterForm({ onRegister }) {
   const [username, setUsername] = useState("");
@@ -20,6 +22,7 @@ function RegisterForm({ onRegister }) {
     >
       <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
+      <ThemeProvider theme={theme}>
         <TextField
           label="Username"
           color="primary"
@@ -27,9 +30,10 @@ function RegisterForm({ onRegister }) {
           onChange={(e) => setUsername(e.target.value)}
           fullWidth
           margin="normal"
+          InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
-            backgroundColor: "#dedede",
+            backgroundColor: "#17477c",
             borderRadius: "6px",
           }}
         />
@@ -40,9 +44,10 @@ function RegisterForm({ onRegister }) {
           onChange={(e) => setEmail(e.target.value)}
           fullWidth
           margin="normal"
+          InputLabelProps={{ shrink: true }}
           style={{
             margin: "20px 0",
-            backgroundColor: "#dedede",
+            backgroundColor: "#17477c",
             borderRadius: "6px",
           }}
         />
@@ -54,9 +59,10 @@ function RegisterForm({ onRegister }) {
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
           margin="normal"
+          InputLabelProps={{ shrink: true }}
           style={{
             marginTop: "20px",
-            backgroundColor: "#dedede",
+            backgroundColor: "#17477c",
             borderRadius: "6px",
           }}
         />
@@ -64,6 +70,7 @@ function RegisterForm({ onRegister }) {
         <Button type="submit" variant="contained" color="primary">
           SIGN UP
         </Button>
+        </ThemeProvider>
       </form>
       <p
         style={{

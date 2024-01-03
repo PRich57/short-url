@@ -64,13 +64,15 @@ function ShorteningForm({ onShorten }) {
   return (
       <div className="form">
         <form onSubmit={handleSubmit}>
+          <ThemeProvider theme={theme}>
           <TextField
             label="URL to shorten"
             variant="outlined"
             fullWidth
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+            // InputLabelProps={{ shrink: true }}
+            style={{ margin: "20px 0", backgroundColor: "#17477c", borderRadius: "6px" }}
           />
           <TextField
             label="Custom URL path (optional)"
@@ -78,12 +80,11 @@ function ShorteningForm({ onShorten }) {
             fullWidth
             value={customSlug}
             onChange={(e) => setCustomSlug(e.target.value)}
-            style={{ margin: "20px 0", backgroundColor: "#dedede", borderRadius: "6px" }}
+            style={{ margin: "20px 0", backgroundColor: "#17477c", borderRadius: "6px" }}
           />
           <Button variant="contained" color="primary" type="submit" style={{ marginBottom: "20px", letterSpacing: '.2rem' }}>
             Shorten URL
           </Button>
-          <ThemeProvider theme={theme}>
             <Snackbar 
               anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
               open={openSnackbar} 

@@ -1,4 +1,4 @@
-# Short URL
+# YouRL
 
 ![License: MIT](https://img.shields.io/badge/MIT_License-8EE4AF)
 
@@ -6,18 +6,18 @@
 
 ## Description
 
-Welcome to Short URL, an innovative platform designed to simplify and optimize your web browsing experience. Short URL enables users to efficiently shorten long URLs for easier sharing and management. The intuitive interface offers both custom and automated short URL generation, enhancing user convenience and web navigation efficiency.
+Welcome to YouRL, an innovative platform designed to simplify and optimize your web browsing experience. YouRL enables users to efficiently shorten long URLs for easier sharing and management. The intuitive interface offers both custom and automated short URL generation, enhancing user convenience and web navigation efficiency.
 
-To visit Short URL and simplify your web experience, click [here.](https://www.you-rl.xyz/)
+To visit YouRL and simplify your web experience, click [here.](https://www.you-rl.xyz/)
 
 ## Table of Contents
 
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Mock-Up](#mock-up)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Future Development Goals](#future-development-goals)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Mock-Up](#mock-up)
+- [License](#license)
+- [Contributing](#contributing)
+- [Future Development Goals](#future-development-goals)
 
 ## Installation
 
@@ -27,7 +27,7 @@ To visit Short URL and simplify your web experience, click [here.](https://www.y
 
 ## Usage
 
-Follow these steps to utilize the Short URL platform effectively:
+Follow these steps to utilize the YouRL platform effectively:
 
 ##### Home Page
 
@@ -44,7 +44,7 @@ Follow these steps to utilize the Short URL platform effectively:
 
 - Accessible after logging in, the Profile page features a built-in URL shortener for convenience.
 - Manage and delete your previously shortened URLs, Deletion is permanent, and the short URL path becomes reusable.
-- Permanently delete your account, which also disables and deletes all associated short URLs, freeing them up for future use.
+- Permanently delete your account, which also disables and deletes all associated shortened URLs, freeing them up for future use.
 
 ##### Navigation
 
@@ -71,9 +71,9 @@ The following images show the web application's user interface and functionality
 
 ![Profile Page](./client/src/assets/profile.png)
 
-##### Delete Short URL
+##### Delete A URL
 
-![Delete A Short URL](./client/src/assets/delete-url.png)
+![Delete A URL](./client/src/assets/delete-url.png)
 
 ##### Delete Account
 
@@ -85,17 +85,24 @@ MIT License
 
 ## Contributing
 
-Short URL is an ongoing solo project, and while it's primarily managed by me, I welcome any questions, feedback, or suggestions for improvement. If you're interested in discussing the project or have any queries, feel free to connect with me via [LinkedIn](https://www.linkedin.com/in/peterrichards57/). Your insights and perspectives are valuable in continually enhancing this application.
+YouRL is an ongoing solo project, and while it's primarily managed by me, I welcome any questions, feedback, or suggestions for improvement. If you're interested in discussing the project or have any queries, feel free to connect with me via [LinkedIn](https://www.linkedin.com/in/peterrichards57/). Your insights and perspectives are valuable in continually enhancing this application.
 
 ## Future Development Goals
 
-Short URL is not just a demonstration of my technical skills but a tool with practical applications. With a commitment to continuous improvement and innovation, the following developments are on the horizon:
+YouRL is not just a demonstration of my technical skills but a tool with practical applications. With a commitment to continuous improvement and innovation, the following developments are on the horizon:
 
 ##### Account Management Enhancements:
+
 Introducing features for users to update their account information, including username, email, and password, ensuring a more personalized and secure experience
+
 ##### Enhanced Security:
+
 Implementing a 'Forgot Password' feature, enabling users to securely reset their passwords and maintain account access.
+
 ##### Progressive Web App (PWA) Transition:
-Converting Short URL into a PWA to provide offline access to data, thereby improving accessibility and user convenience.
+
+Converting YouRL into a PWA to provide offline access to data, thereby improving accessibility and user convenience.
+
 ##### Mobile Usability:
+
 Refactoring the application using React Native, targeting enhanced mobile user experience and interface responsiveness.

@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "./UserContext";
 import "../App.css";
-import "../style/Header.css"
+import "../style/Header.css";
 
 function Header() {
   const navigate = useNavigate();
@@ -66,7 +66,6 @@ function Header() {
     navigate("/login");
   };
 
-
   const getMenuItems = () => {
     const items = [];
 
@@ -80,7 +79,7 @@ function Header() {
         }}
         className={getButtonClass("home")}
         sx={{
-          color: "white"
+          color: "white",
         }}
       >
         HOME
@@ -98,19 +97,19 @@ function Header() {
           }}
           className={getButtonClass("profile")}
           sx={{
-            color: "white"
+            color: "white",
           }}
         >
           PROFILE
         </MenuItem>
       );
       items.push(
-        <MenuItem 
-          key="logout" 
-          onClick={handleLogout} 
-          className="btn" 
+        <MenuItem
+          key="logout"
+          onClick={handleLogout}
+          className="btn"
           sx={{
-            color: "#FFC27F"
+            color: "#FFC27F",
           }}
         >
           SIGN OUT
@@ -127,7 +126,7 @@ function Header() {
           }}
           className={getButtonClass("login")}
           sx={{
-            color: "white"
+            color: "white",
           }}
         >
           SIGN IN
@@ -143,7 +142,7 @@ function Header() {
           }}
           className={getButtonClass("register")}
           sx={{
-            color: "white"
+            color: "white",
           }}
         >
           SIGN UP
@@ -185,18 +184,18 @@ function Header() {
             sx={{
               mr: 2,
               fontWeight: 700,
-              color: '#8EE4AF',
-              textDecoration: 'none',
+              color: "#FFC27F",
+              textDecoration: "none",
               flexGrow: 1,
-              fontSize: 'calc(12px + 1.5vw)'
+              fontSize: "calc(12px + 1.5vw)",
             }}
           >
-            SHORT URL
+            YO<span style={{ color: "#8EE4AF" }}><span className="split-color">U</span> RL</span>
           </Typography>
           <div className="desktopMenu">
-            <Button 
-              color="inherit" 
-              onClick={() =>{
+            <Button
+              color="inherit"
+              onClick={() => {
                 navigate("/home");
                 handleTabClick("home");
               }}
@@ -206,8 +205,8 @@ function Header() {
             </Button>
             {user ? (
               <>
-                <Button 
-                  color="inherit" 
+                <Button
+                  color="inherit"
                   onClick={() => {
                     navigate("/profile");
                     handleTabClick("profile");
@@ -216,14 +215,19 @@ function Header() {
                 >
                   PROFILE
                 </Button>
-                <Button style={{ color: "#FFC27F"}} color="inherit" onClick={handleLogout} className="btn">
+                <Button
+                  style={{ color: "#FFC27F" }}
+                  color="inherit"
+                  onClick={handleLogout}
+                  className="btn"
+                >
                   SIGN OUT
                 </Button>
               </>
             ) : (
               <>
-                <Button 
-                  color="inherit" 
+                <Button
+                  color="inherit"
                   onClick={() => {
                     navigate("/login");
                     handleTabClick("login");
@@ -232,8 +236,8 @@ function Header() {
                 >
                   SIGN IN
                 </Button>
-                <Button 
-                  color="inherit" 
+                <Button
+                  color="inherit"
                   onClick={() => {
                     navigate("/register");
                     handleTabClick("register");
@@ -253,9 +257,9 @@ function Header() {
             className="mobileMenuButton"
             sx={{
               mr: 2,
-              display: { xl: 'none', md: 'none', },
+              display: { xl: "none", md: "none" },
               fontWeight: 700,
-              color: 'inherit',
+              color: "inherit",
             }}
           >
             <MenuIcon />
