@@ -7,11 +7,11 @@ import {
   Link,
   IconButton,
   Tooltip,
-  Fade
+  Fade,
 } from "@mui/material";
 import { DeleteOutline, ContentCopy, Check } from "@mui/icons-material";
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "../utils/theme/alertTheme";
+import { theme, deleteTheme } from "../utils/theme/customTheme";
 
 function RecentURLsList({ urls, onDeleteClick, showDelete }) {
   // Add in functionality for copying short URL to clipboard
@@ -29,53 +29,58 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
       await navigator.clipboard.writeText(url);
       setCopiedUrlId(id);
     } catch (err) {
-      console.error('Failed to copy: ', err);
+      console.error("Failed to copy: ", err);
     }
   };
 
   return (
     <List style={{ padding: "0 15px" }}>
       {urls.map((url) => (
-        <ListItem 
+        <ListItem
           key={url._id}
           secondaryAction={
-            <>
+            <div className="tooltips">
               <ThemeProvider theme={theme}>
-                <Tooltip 
-                  title={copiedUrlId === url._id ? "Copied!" : "Copy Short URL"} 
+                <Tooltip
+                  title={copiedUrlId === url._id ? "Copied!" : "Copy Short URL"}
                   arrow
                   disableFocusListener
                   TransitionComponent={Fade}
                   TransitionProps={{ timeout: 600 }}
-                  >
+                >
                   <IconButton
                     edge="end"
                     aria-label="copy"
                     onClick={() => handleCopy(url.fullShortUrl, url._id)}
                     sx={{ marginRight: "1rem" }}
-                    >
-                    {copiedUrlId === url._id ? <Check style={{ color: "#8EE4AF"}} /> : <ContentCopy style={{ color: "white" }} />}
+                  >
+                    {copiedUrlId === url._id ? (
+                      <Check style={{ color: "#8EE4AF" }} />
+                    ) : (
+                      <ContentCopy style={{ color: "#8EE4AF" }} />
+                    )}
                   </IconButton>
                 </Tooltip>
-                {" "}
-              {showDelete && (
-                <Tooltip 
-                title="Delete" 
-                arrow
-                TransitionComponent={Fade}
-                TransitionProps={{ timeout: 600 }}
-                >
-                  <IconButton 
-                    edge="end" 
-                    aria-label="delete" 
-                    onClick={() => onDeleteClick(url._id)}
-                    >
-                    <DeleteOutline style={{ color: "white" }} />
-                  </IconButton>
-                </Tooltip>
-              )}
               </ThemeProvider>
-            </>
+              <ThemeProvider theme={deleteTheme}>
+                {showDelete && (
+                  <Tooltip
+                    title="Delete"
+                    arrow
+                    TransitionComponent={Fade}
+                    TransitionProps={{ timeout: 600 }}
+                  >
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={() => onDeleteClick(url._id)}
+                    >
+                      <DeleteOutline style={{ color: "white" }} />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </ThemeProvider>
+            </div>
           }
         >
           <ListItemText

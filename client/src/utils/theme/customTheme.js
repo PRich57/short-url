@@ -52,3 +52,22 @@ export const theme = createTheme({
     }
   },
 });
+
+export const deleteTheme = createTheme({
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          color: "#043d77",
+          backgroundColor: "#FFC27F",
+          fontFamily: "Montserrat",
+          letterSpacing: ".15rem",
+          fontSize: ".8rem"
+        },
+        arrow: {
+          color: "#FFC27F"
+        }
+      }
+    }
+  },
+});

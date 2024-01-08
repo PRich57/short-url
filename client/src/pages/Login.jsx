@@ -6,7 +6,7 @@ import LoginForm from "../components/LoginForm";
 import { useUser } from "../components/UserContext";
 import { Snackbar, Alert } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "../utils/theme/alertTheme";
+import { theme } from "../utils/theme/customTheme";
 
 function Login() {
   const navigate = useNavigate();
@@ -20,30 +20,30 @@ function Login() {
     },
   });
 
-    // Use state for MUI Snackbar alerts
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-    const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  // Use state for MUI Snackbar alerts
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-      // Async function to handle Snackbar
+  // Async function to handle Snackbar
   const handleSnackbarClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpenSnackbar(false);
-  }
+  };
 
   // Create handleLogin async function
   const handleLogin = async (identifier, password) => {
     try {
       await loginUser({ variables: { identifier, password } });
-      setSnackbarMessage('Login successful!');
-      setSnackbarSeverity('success');
+      setSnackbarMessage("Login successful!");
+      setSnackbarSeverity("success");
       setOpenSnackbar(true);
-      navigate('/home');
+      navigate("/home");
     } catch (err) {
-      setSnackbarMessage('Login Failed: ' + err.message);
-      setSnackbarSeverity('error');
+      setSnackbarMessage("Login Failed: " + err.message);
+      setSnackbarSeverity("error");
       setOpenSnackbar(true);
     }
   };
@@ -52,18 +52,18 @@ function Login() {
     <div className="form">
       <LoginForm onLogin={handleLogin} />
       <ThemeProvider theme={theme}>
-        <Snackbar 
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-          open={openSnackbar} 
-          autoHideDuration={4000} 
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          open={openSnackbar}
+          autoHideDuration={4000}
           onClose={handleSnackbarClose}
-          >
-          <Alert 
-            elevation={6} 
-            variant="filled" 
-            onClose={handleSnackbarClose} 
+        >
+          <Alert
+            elevation={6}
+            variant="filled"
+            onClose={handleSnackbarClose}
             severity={snackbarSeverity}
-            >
+          >
             {snackbarMessage}
           </Alert>
         </Snackbar>
