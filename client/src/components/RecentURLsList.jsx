@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   List,
   ListItem,
@@ -6,24 +6,77 @@ import {
   Typography,
   Link,
   IconButton,
+  Tooltip,
+  Fade
 } from "@mui/material";
-import { DeleteOutline } from "@mui/icons-material"
+import { DeleteOutline, ContentCopy, Check } from "@mui/icons-material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../utils/theme/alertTheme";
 
 function RecentURLsList({ urls, onDeleteClick, showDelete }) {
+  // Add in functionality for copying short URL to clipboard
+  const [copiedUrlId, setCopiedUrlId] = useState(null);
+
+  useEffect(() => {
+    if (copiedUrlId) {
+      const timer = setTimeout(() => setCopiedUrlId(null), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [copiedUrlId]);
+
+  const handleCopy = async (url, id) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedUrlId(id);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
   return (
     <List style={{ padding: "0 15px" }}>
       {urls.map((url) => (
         <ListItem 
           key={url._id}
-          secondaryAction={showDelete && (
-            <IconButton 
-              edge="end" 
-              aria-label="delete" 
-              onClick={() => onDeleteClick(url._id)}
-            >
-              <DeleteOutline style={{ color: "white" }} />
-            </IconButton>
-          )}
+          secondaryAction={
+            <>
+              <ThemeProvider theme={theme}>
+                <Tooltip 
+                  title={copiedUrlId === url._id ? "Copied!" : "Copy Short URL"} 
+                  arrow
+                  disableFocusListener
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 600 }}
+                  >
+                  <IconButton
+                    edge="end"
+                    aria-label="copy"
+                    onClick={() => handleCopy(url.fullShortUrl, url._id)}
+                    sx={{ marginRight: "1rem" }}
+                    >
+                    {copiedUrlId === url._id ? <Check style={{ color: "#8EE4AF"}} /> : <ContentCopy style={{ color: "white" }} />}
+                  </IconButton>
+                </Tooltip>
+                {" "}
+              {showDelete && (
+                <Tooltip 
+                title="Delete" 
+                arrow
+                TransitionComponent={Fade}
+                TransitionProps={{ timeout: 600 }}
+                >
+                  <IconButton 
+                    edge="end" 
+                    aria-label="delete" 
+                    onClick={() => onDeleteClick(url._id)}
+                    >
+                    <DeleteOutline style={{ color: "white" }} />
+                  </IconButton>
+                </Tooltip>
+              )}
+              </ThemeProvider>
+            </>
+          }
         >
           <ListItemText
             primary={
@@ -48,6 +101,7 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
               <Typography
                 style={{
                   marginBottom: "10px",
+                  marginRight: "4rem",
                   color: "white",
                   wordBreak: "break-all",
                 }}

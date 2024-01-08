@@ -36,5 +36,19 @@ export const theme = createTheme({
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          color: "#043d77",
+          backgroundColor: "#8EE4AF",
+          fontFamily: "Montserrat",
+          letterSpacing: ".15rem",
+          fontSize: ".8rem"
+        },
+        arrow: {
+          color: "#8EE4AF"
+        }
+      }
+    }
   },
 });
