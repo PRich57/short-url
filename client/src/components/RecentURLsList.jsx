@@ -34,7 +34,7 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
   };
 
   return (
-    <List style={{ padding: "0 15px" }}>
+    <List style={{ padding: "0 10px" }}>
       {urls.map((url) => (
         <ListItem
           key={url._id}
@@ -52,12 +52,12 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
                     edge="end"
                     aria-label="copy"
                     onClick={() => handleCopy(url.fullShortUrl, url._id)}
-                    sx={{ marginRight: "1rem" }}
+                    sx={{ margin: "1rem", marginRight: "0", marginTop: "0" }}
                   >
                     {copiedUrlId === url._id ? (
                       <Check style={{ color: "#8EE4AF" }} />
                     ) : (
-                      <ContentCopy style={{ color: "#8EE4AF" }} />
+                      <ContentCopy style={{ color: "#8EE4AF", fontSize: 25 }} />
                     )}
                   </IconButton>
                 </Tooltip>
@@ -74,8 +74,9 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
                       edge="end"
                       aria-label="delete"
                       onClick={() => onDeleteClick(url._id)}
+                      sx={{ margin: "1rem", marginRight: "0", marginTop: "0" }}
                     >
-                      <DeleteOutline style={{ color: "white" }} />
+                      <DeleteOutline style={{ color: "white", fontSize: 27 }} />
                     </IconButton>
                   </Tooltip>
                 )}
@@ -90,13 +91,14 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
                   marginBottom: "10px",
                   color: "white",
                   wordBreak: "break-word",
+                  marginRight: "1rem"
                 }}
               >
                 Short URL :{" "}
                 <Link
                   href={url.fullShortUrl}
                   target="_blank"
-                  style={{ color: "#8EE4AF", fontSize: "calc(13px + .2vw)" }}
+                  style={{ color: "#8EE4AF", fontSize: "calc(14px + .2vw)" }}
                 >
                   {url.fullShortUrl}
                 </Link>
@@ -105,17 +107,24 @@ function RecentURLsList({ urls, onDeleteClick, showDelete }) {
             secondary={
               <Typography
                 style={{
+                  fontSize: "13px",
                   marginBottom: "10px",
-                  marginRight: "4rem",
+                  marginRight: "4.4rem",
                   color: "white",
-                  wordBreak: "break-all",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxHeight: "6em",
                 }}
               >
-                Original URL :{" "}
+                Original URL : {" "}
                 <Link
                   href={url.originalUrl}
                   target="_blank"
-                  style={{ color: "#ff4e3b", fontSize: "calc(9px + .1vw)" }}
+                  style={{ 
+                    color: "#ff4e3b", 
+                    fontSize: "calc(9px + .1vw)", 
+                    wordBreak: "break-all",
+                  }}
                 >
                   {url.originalUrl}
                 </Link>

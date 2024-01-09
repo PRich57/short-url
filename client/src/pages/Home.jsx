@@ -43,7 +43,7 @@ function Home() {
               My Recent URLs:
             </Typography>
             <RecentURLsList urls={urlsData.getUserUrls.slice(0, 3)} showDelete={false} />
-            <Typography variant="h6" style={{ marginBottom: "10px", color: "white" }}>
+            <Typography variant="h6" style={{ marginBottom: "10px", marginTop: "20px", color: "white" }}>
               Visit your{" "}
               <Link
                 to="/profile"
