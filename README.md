@@ -34,6 +34,7 @@ Follow these steps to utilize the YouRL platform effectively:
 - The Home page is accessible upon logging in. First-time users need to sign up.
 - Enter the original URL you wish to shorten. Optionally, specify a custom URL path.
 - View your three most recent short URLs, listed in descending order from newest to oldest.
+- You can click the copy icon button next to each short URL to easily copy it to your clipboard for quick sharing.
 
 ##### User Authentication
 
@@ -44,6 +45,7 @@ Follow these steps to utilize the YouRL platform effectively:
 
 - Accessible after logging in, the Profile page features a built-in URL shortener for convenience.
 - Manage and delete your previously shortened URLs, Deletion is permanent, and the short URL path becomes reusable.
+- Similar to the Home Page, you can click the copy icon button next to each short URL to copy it to your clipboard for convenience.
 - Permanently delete your account, which also disables and deletes all associated shortened URLs, freeing them up for future use.
 
 ##### Navigation
