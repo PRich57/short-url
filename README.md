@@ -108,3 +108,7 @@ Converting YouRL into a PWA to provide offline access to data, thereby improving
 ##### Mobile Usability:
 
 Refactoring the application using React Native, targeting enhanced mobile user experience and interface responsiveness.
+
+##### Scalability Through Caching:
+
+Incorporating Redis as a caching solution to enhance YouRL's scalability. This will significantly speed up data retrieval processes, reduce server load, and ensure a faster, more efficient user experience, even as user traffic grows.
