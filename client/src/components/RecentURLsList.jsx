@@ -14,19 +14,27 @@ import { ThemeProvider } from "@emotion/react";
 import { theme, deleteTheme } from "../utils/theme/customTheme";
 
 function RecentURLsList({ urls, onDeleteClick, showDelete }) {
-  // Add in functionality for copying short URL to clipboard
+  // State for tracking the ID of the URL copied to clipboard
   const [copiedUrlId, setCopiedUrlId] = useState(null);
 
+  // Hook to handle the lifecycle of the 'copied' state
   useEffect(() => {
+    // Check if a URL has been copied
     if (copiedUrlId) {
+      // Set a timer to reset the 'copiedUrlId' state after 2 sec
       const timer = setTimeout(() => setCopiedUrlId(null), 2000);
+      // Clean up the timer when the component unmounts or if 'copiedUrlId' changes before timer ends
       return () => clearTimeout(timer);
     }
+    // Add 'copied' state to dependency array to rerun useEffect when 'copiedUrlId' changes
   }, [copiedUrlId]);
 
+  // Function to handle copying a URL to the clipboard
   const handleCopy = async (url, id) => {
     try {
+      // Attempt to copy provided URL to clipboard
       await navigator.clipboard.writeText(url);
+      // If successful, update 'copiedUrlId' with ID of copied URL
       setCopiedUrlId(id);
     } catch (err) {
       console.error("Failed to copy: ", err);

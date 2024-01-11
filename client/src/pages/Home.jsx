@@ -15,6 +15,7 @@ function Home() {
   });
 
   useEffect(() => {
+    // Re-fetch the data when component mounts for real time data updates
     refetch();
   }, []);
 
