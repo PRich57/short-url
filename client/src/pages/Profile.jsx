@@ -32,6 +32,7 @@ function Profile() {
   const [deletionType, setDeletionType] = useState(null);
   const [dialogMessage, setDialogMessage] = useState("");
 
+  // Fetch user URLs and user data using Apollo Client
   const { data: urlsData, refetch: refetchUrls } = useQuery(GET_USER_URLS, {
     variables: { userId: user._id },
     fetchPolicy: "network-only",
@@ -43,10 +44,13 @@ function Profile() {
 
   // Check user's preferences on component mount
   useEffect(() => {
+    // Refetch user's URLs when the component mounts
     refetchUrls();
+    // Check if user data is available and if so, update state of 'doNotShowAgain'
     if (userData && userData.getUserData) {
       setDoNotShowAgain(userData.getUserData.dismissDeleteUrlDialog);
     }
+    // Dependency array has useEffect rerun if userData or refetchUrls change
   }, [userData, refetchUrls]);
 
   // Delete url mutation hook
