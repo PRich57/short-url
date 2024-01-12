@@ -11,11 +11,14 @@ import { theme } from "../utils/theme/customTheme";
 function Login() {
   const navigate = useNavigate();
   const { setUser } = useUser();
+
+  // Mutation hook from Apollo Client for login resolver
   const [loginUser] = useMutation(LOGIN, {
+    // Callback function when login mutation is successful
     onCompleted: (data) => {
       // Store auth token in localStorage
       localStorage.setItem("token", data.login.token);
-      // Store user info in context
+      // Update context with logged-in user's data
       setUser(data.login);
     },
   });
@@ -25,23 +28,28 @@ function Login() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  // Async function to handle Snackbar
+  // Function to handle closing Snackbar
   const handleSnackbarClose = (event, reason) => {
+    // Prevent closing Snackbar if clicked away
     if (reason === "clickaway") {
       return;
     }
     setOpenSnackbar(false);
   };
 
-  // Create handleLogin async function
+  // Function for handling login logic
   const handleLogin = async (identifier, password) => {
     try {
+      // Attempt to log in with provided credentials
       await loginUser({ variables: { identifier, password } });
+      // Set the state for Snackbar with a success message
       setSnackbarMessage("Login successful!");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
+      // Navigate to the '/home' route upon successful login
       navigate("/home");
     } catch (err) {
+      // If login fails, set the Snackbar state to display an error message
       setSnackbarMessage("Login Failed: " + err.message);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
