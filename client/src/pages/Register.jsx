@@ -9,9 +9,11 @@ import { theme } from "../utils/theme/customTheme";
 
 function Register() {
   const navigate = useNavigate();
+  // Mutation hook for registering new user
   const [registerUser] = useMutation(REGISTER, {
+    // Callback function called when mutation is successfully completed
     onCompleted: () => {
-      // Redirect to Login page after successful registration
+      // Navigate to root route
       navigate("/");
     },
   });
