@@ -18,13 +18,14 @@ function Register() {
     },
   });
 
-  // Use state for MUI Snackbar alerts
+  // State variables for MUI Snackbar alerts
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  // Async function to handle Snackbar
+  // Function to handle closing the Snackbar
   const handleSnackbarClose = (event, reason) => {
+    // Prevent snackbar from closing if the user clicks away
     if (reason === "clickaway") {
       return;
     }
