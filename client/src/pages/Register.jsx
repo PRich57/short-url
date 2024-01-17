@@ -9,6 +9,7 @@ import { theme } from "../utils/theme/customTheme";
 
 function Register() {
   const navigate = useNavigate();
+
   // Mutation hook for registering new user
   const [registerUser] = useMutation(REGISTER, {
     // Callback function called when mutation is successfully completed
@@ -32,15 +33,19 @@ function Register() {
     setOpenSnackbar(false);
   };
 
-  // Create handleRegister async function
+  // Function to handle closing the registration process
   const handleRegister = async (username, email, password) => {
     try {
+      // Attempt to register user with provided credentials
       await registerUser({ variables: { username, email, password } });
+      // On success, set the Snackbar state to show a success message
       setSnackbarMessage("Registration Successful. You can now log in");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
+      // Navigate to root route
       navigate("/");
     } catch (err) {
+      // If registration fails, set the Snackbar state to display an error message
       setSnackbarMessage("Registration Failed: " + err.message);
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
