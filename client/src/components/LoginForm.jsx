@@ -5,6 +5,7 @@ import { ThemeProvider } from "@emotion/react";
 import { theme } from "../utils/theme/customTheme";
 
 function LoginForm({ onLogin }) {
+  // State for identifier (username or email) and password
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 

@@ -4,13 +4,14 @@ const jwt = require('jsonwebtoken');
 const { User, Url } = require('../models');
 const ShortUniqueId = require('short-unique-id');
 
-// Pull in the jwt secret
+// Pull in the jwt secret environment variables
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const resolvers = {
   Query: {
-    // Get all shortened URLs for this user
+    // Get all shortened URLs for specific user
     getUserUrls: async (_, { userId }) => {
+      // Sort newest to oldest
       const urls = await Url.find({ user: userId })
       .sort({ createdAt: -1 });
       return urls.map(url => {
@@ -20,26 +21,28 @@ const resolvers = {
         };
       });
     },
-    // Get user data
+    // Get single user's data based on their userId
     getUserData: async (_, { userId }) => {
       return await User.findById(userId);
     }
   },
   Mutation: {
-    // User registration
+    // User registration logic
     register: async (_, { username, email, password }) => {
       try {
         // Check if the user already exists in db
         const existingEmail = await User.findOne({ email: email });
 
         if (existingEmail) {
-          // If the user exists, throw new Error
+          // If the user exists, send error message
           throw new Error('This email address is already in use');
         }
         
         // Check if username already exists in db
-        const existingUsername = await User.findOne({ username: username })
+        const existingUsername = await User.findOne({ username: username });
+
         if (existingUsername) {
+          // If the username is already in use, send error message
           throw new Error("This username is taken");
         }
 
@@ -53,7 +56,7 @@ const resolvers = {
         // Save user
         const savedUser = await newUser.save();
 
-        // Create a json web token with a 2 hour time limit
+        // Create a json web token with a 24 hour time limit
         const token = jwt.sign({ email: savedUser.email, id: savedUser._id }, JWT_SECRET, { expiresIn: '24h' });
 
         // Return the schema based properties of the user and the token
@@ -99,7 +102,7 @@ const resolvers = {
           throw new Error("Incorrect password");
         }
 
-        // Create new token for the user with 2 hour time limit
+        // Create new token for the user with 24 hour time limit
         const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, { expiresIn: '24h' });
         return { ...user._doc, token };
       } catch (err) {
