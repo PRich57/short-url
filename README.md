@@ -55,7 +55,7 @@ Follow these steps to utilize the YouRL platform effectively:
 
 ## Mock-Up
 
-The following images show the web application's user interface and functionality.
+The following images show the application's user interface and functionality.
 
 ##### Sign Up
 
