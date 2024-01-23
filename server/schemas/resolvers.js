@@ -75,7 +75,7 @@ const resolvers = {
         }
       }
     },
-    // User login
+    // User login logic
     login: async (_, { identifier, password }) => {
       try {
         // Make identifier lowercase for case insensitive search
@@ -109,7 +109,7 @@ const resolvers = {
         throw new Error(err.message);
       }
     },
-    // Shorten URL
+    // Logic to create a short URL
     shortenUrl: async (_, { originalUrl, userId, customSlug }) => {
       // Check for originalUrl
       if (!originalUrl) {
@@ -182,7 +182,7 @@ const resolvers = {
         throw new Error(err.message)
       }
     },
-    // Delete url
+    // Logic to delete a specific URL
     deleteUrl: async (_, { urlId }, context) => {
       try {
         // Get user from context
