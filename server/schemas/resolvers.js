@@ -124,7 +124,6 @@ const resolvers = {
         throw new Error("Original URL doesn't appear to be in valid URL format.")
       }
 
-      
       // Create a random number function for values 1-10
       function getRandomNumber() {
         return Math.floor(Math.random() * 8) + 1;
