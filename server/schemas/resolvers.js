@@ -206,7 +206,7 @@ const resolvers = {
         throw new Error(err.message);
       }
     },
-    // Delete account
+    // Logic to delete a user account and associated URLs
     deleteUser: async (_, { userId }, context) => {
       try {
         // Get the user info from context
@@ -228,7 +228,9 @@ const resolvers = {
         throw new Error(err.message);
       }
     },
+    // Update the user's preference to permanently dismiss the delete URL dialog
     setDismissDeleteUrlDialog: async (_, { userId, dismiss }) => {
+      // Update user's preference in their document
       return await User.findByIdAndUpdate(userId, { dismissDeleteUrlDialog: dismiss }, { new: true });
     },
   },
