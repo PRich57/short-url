@@ -31,6 +31,9 @@ function App() {
   )
 }
 
+export default App;
+
+
 // // Declare RootRoute for dynamically rendering Home or Login based on auth
 // const RootRoute = () => {
 //   const navigate = useNavigate();
@@ -78,5 +81,3 @@ function App() {
 //   localStorage.setItem("userData", null);
 //   navigate('/login');
 // };
-
-export default App;
