@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
-import { jwtDecode } from 'jwt-decode';
-import { useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ErrorPage from './pages/Error';
