@@ -16,3 +16,4 @@ export default defineConfig({
     }
   }
 })
+// Need to add VitePWA plugin
