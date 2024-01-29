@@ -5,8 +5,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     react(),
-    VitePWA({
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'favicon-32x32.png', 'favicon-16x16.png'],
+    // VitePWA({
+    //   includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'favicon-32x32.png', 'favicon-16x16.png'],
   //     manifest: {
   //       name: 'YouRL',
   //       short_name: 'YouRL',
@@ -43,7 +43,7 @@ export default defineConfig({
   //     globPatterns: ['**/*.{js,css,html,ico,png,svg}']
   //     }
   //   })
-  // ],
+  ],
   server: {
     port: 5179,
     open: true,
