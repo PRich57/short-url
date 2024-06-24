@@ -8,7 +8,7 @@
 
 Welcome to YouRL, an innovative platform designed to simplify and optimize your web browsing experience. YouRL enables users to efficiently shorten long URLs for easier sharing and management. The intuitive interface offers both custom and automated short URL generation, enhancing user convenience and web navigation efficiency.
 
-To visit YouRL and simplify your web experience, click [here.](https://www.you-rl.xyz/)
+To visit YouRL and simplify your web experience, click [here.](https://www.you-rl.xyz/) 
 
 ## Table of Contents
 
